@@ -1,0 +1,29 @@
+When /^I wait (\d+\.?\d?) seconds$/ do |time|
+  sleep time.to_f
+end
+
+Given /^the following bids:$/ do |bids|
+  Bid.create!(bids.hashes)
+end
+
+When /^I delete the (\d+)(?:st|nd|rd|th) bid$/ do |pos|
+  visit bids_path
+  within("table tr:nth-child(#{pos.to_i+1})") do
+    click_link "Destroy"
+  end
+end
+
+Then /^I should see the following bids:$/ do |expected_bids_table|
+  expected_bids_table.diff!(tableish('table tr', 'td,th'))
+end
+
+Given /^these bids$/ do |bid_data|
+  bid_data.hashes.each do |row|
+    person = Person.find_or_create_by_email row['email']
+    person.bids.create :zip => row['zip']
+  end
+end
+
+Given /there is data/ do
+  puts Bid.count, " bids from #{Person.all.map(&:email).join(", ")}"
+end

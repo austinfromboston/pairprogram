@@ -1,0 +1,13 @@
+!!!
+%html
+  %head
+    %title Pair Program
+    = stylesheet_link_tag :all
+    = csrf_meta_tag
+  %body
+    %header
+      - flash.each do |type, message|
+        %div{ :class => "flash-#{type}" }
+          = message
+
+    = yield

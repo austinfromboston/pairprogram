@@ -1,0 +1,14 @@
+= form_for @bid, :html => { :class => 'madlibs' } do |bid_form|
+  = bid_form.fields_for :person do |person_fields|
+    .form-field
+      Please email me at
+      = person_fields.label :email
+      = person_fields.text_field :email
+
+  .form-field
+    when anyone in 
+    = bid_form.label :zip
+    = bid_form.text_field :zip
+    is interested in pairing
+
+  = bid_form.submit "Notify me"

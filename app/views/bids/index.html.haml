@@ -1,0 +1,5 @@
+%ol
+  - @bids.each do |bid|
+    %li{:'data-name' => "pair-with-#{bid.person.email}"}
+      = bid.person.email
+      = link_to "Request Pair", new_bid_offer_path(bid)

@@ -1,0 +1,9 @@
+= form_for :offer, :url => bid_offers_path(@bid), :html => { :class => 'madlibs' } do |offer_form|
+  = offer_form.fields_for :person_attributes do |person_fields|
+    .form-field
+      Please email me at
+      = person_fields.label :email
+      = person_fields.text_field :email
+      to discuss a pairing opportunity
+
+  = offer_form.submit "Request Pair"
