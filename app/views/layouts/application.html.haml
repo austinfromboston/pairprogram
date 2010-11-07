@@ -2,12 +2,34 @@
 %html
   %head
     %title Pair Program
+    = stylesheet_link_tag 'compiled/screen.css', :media => 'screen, projection'
+    = stylesheet_link_tag 'compiled/print.css', :media => 'print'
+    /[if lt IE 8]
+      = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
     = stylesheet_link_tag :all
     = csrf_meta_tag
   %body
-    %header
-      - flash.each do |type, message|
-        %div{ :class => "flash-#{type}" }
-          = message
+    #container-main
+      #container-columns
+        #left-bar.column
+          - Dir.entries(Rails.root.join('public', 'images', 'pairings')).select { |x| x =~ /jpg$/ }.shuffle.each do |path|
+            = image_tag "/images/pairings/#{path}", :class => 'pair-image', :style => "-webkit-transform: rotate( #{(rand(30) -15).to_i}deg );"
 
-    = yield
+        #main.column
+          %header
+            %h1 Pair Program
+            #description Two programmers, one computer, creating better solutions through dialog.
+            %nav
+              %ul
+                %li
+                  = link_to "Why Pair?"
+                %li
+                  = link_to "How it works"
+                %li
+                  = link_to "When to Pair"
+
+            - flash.each do |type, message|
+              %div{ :class => "flash-#{type}" }
+                = message
+
+          = yield

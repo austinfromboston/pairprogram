@@ -14,6 +14,7 @@ gem 'factory_girl'
 gem 'database_cleaner'
 gem 'capybara'
 gem 'cucumber-rails'
+gem "compass", ">= 0.10.6"
 
 # Use unicorn as the web server
 gem 'unicorn'

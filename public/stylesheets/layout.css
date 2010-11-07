@@ -1,0 +1,44 @@
+/*
+a, h1, h2, p, div, span, label, input {
+  font-family: "Geneva, Helvetica, Arial, sans-serif";
+}
+
+#container-main {
+  width: 900px;
+  margin: 0 auto;
+  text-align: left;
+  min-height: 800px;
+}
+
+#container-columns {
+  display:table-row;
+}
+
+body {
+  text-align: center;
+}
+
+.column {
+  vertical-align: top;
+  margin-right: 10px;
+  display: table-cell;
+  height: 100%;
+}
+
+#left-bar {
+  width: 300px;
+  min-height: 800px;
+}
+
+#start-block {
+  margin: 100px 0 0 0;
+}
+#start-block label {
+  display: block;
+  font-size: 1.5em;
+}
+#start-block input {
+  font-size: 2em;
+  display:block;
+}
+*/

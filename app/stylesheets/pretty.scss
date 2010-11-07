@@ -1,0 +1,16 @@
+.pair-image {
+  max-height: 250px;
+  max-width: 275px;
+  border: 8px solid white;
+  -webkit-box-shadow: 3px 3px 3px #898989;
+  -webkit-transform: rotate(-5deg);
+}
+nav {
+  margin: 10px 0 20px;
+    ul {
+    list-style: none;
+    li {
+      display: inline-block;
+      list-style: none;
+    }
+}}

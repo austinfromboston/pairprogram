@@ -1,0 +1,25 @@
+#container-main {
+  @include container;
+}
+
+#left-bar {
+  @include column(12);
+}
+
+#start-block {
+  margin: 100px 0 0 0;
+  text-align: center;
+  form {
+    text-align: center;
+  }
+  label {
+    display: block;
+    font-size: 1.5em;
+  }
+  input {
+    font-size: 1.5em;
+    display:block;
+    text-align: center;
+    margin: 10px auto 0;
+  }
+}

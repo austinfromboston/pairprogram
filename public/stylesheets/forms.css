@@ -1,6 +1,8 @@
-form.madlibs label {
+form.madlibs {
+ label {
     display: none;
   }
-form.madlibs .form-field {
+  .form-field {
     display: inline;
   }
+}

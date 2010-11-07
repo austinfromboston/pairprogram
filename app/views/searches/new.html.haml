@@ -1,5 +1,7 @@
-= form_tag bids_path, :method => :get do 
-  = label_tag :postal_code, 'Zip Code'
-  = text_field_tag :postal_code, nil, :size => 6
-  = submit_tag "Find a Pair"
+#start-block
+  %h1 Looking for a Pair?
+  = form_tag bids_path, :method => :get do 
+    = label_tag :postal_code, 'Enter Your Zip Code'
+    = text_field_tag :postal_code, nil, :size => 6
+    = submit_tag "Find a Pair"
   
