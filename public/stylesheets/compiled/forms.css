@@ -1,0 +1,44 @@
+/* line 1, ../../../app/stylesheets/forms.scss */
+form.madlibs {
+  font-size: 1.5em;
+}
+/* line 3, ../../../app/stylesheets/forms.scss */
+form.madlibs label {
+  display: none;
+}
+/* line 6, ../../../app/stylesheets/forms.scss */
+form.madlibs input {
+  font-size: 1em;
+  color: #66bb66;
+}
+/* line 10, ../../../app/stylesheets/forms.scss */
+form.madlibs .form-field {
+  display: inline;
+}
+
+/* line 15, ../../../app/stylesheets/forms.scss */
+form input[type=submit] {
+  background: #c63929;
+  background: -moz-linear-gradient(0% 100% 90deg, #008911 0%, #00b517 50%, #29c639 50%, #2eee43 100%);
+  background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #2eee43), color-stop(0.5, #29c639), color-stop(0.5, #00b517), color-stop(1, #008911));
+  border: 1px solid #009511;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  box-shadow: inset 0px 0px 0px 1px rgba(100, 255, 115, 0.4), 0 1px 3px #333333;
+  -moz-box-shadow: inset 0px 0px 0px 1px rgba(100, 255, 115, 0.4), 0 1px 3px #333333;
+  -webkit-box-shadow: inset 0px 0px 0px 1px rgba(100, 255, 115, 0.4), 0 1px 3px #333333;
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 1px;
+  line-height: 1;
+  padding: 14px;
+  text-align: center;
+  text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}
+
+/* line 36, ../../../app/stylesheets/forms.scss */
+.fields-block {
+  margin: 0 0 20px 0;
+}

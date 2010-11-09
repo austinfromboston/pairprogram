@@ -1,0 +1,86 @@
+/*
+Syntax error: Undefined mixin 'container'.
+        on line 2 of /Users/austin/Sites/pairprogram/app/stylesheets/layout.scss, in `container'
+        from line 2 of /Users/austin/Sites/pairprogram/app/stylesheets/layout.scss
+
+1: #container-main {
+2:   @include container;
+3: }
+4: 
+5: #left-bar {
+6:   @include column(10);
+7: }
+
+Backtrace:
+/Users/austin/Sites/pairprogram/app/stylesheets/layout.scss:2:in `container'
+/Users/austin/Sites/pairprogram/app/stylesheets/layout.scss:2
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/sass-3.1.0.alpha.19/lib/sass/tree/mixin_node.rb:81:in `perform!'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/sass-3.1.0.alpha.19/lib/sass/tree/node.rb:330:in `_perform'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/sass-3.1.0.alpha.19/lib/sass/tree/node.rb:213:in `perform'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/sass-3.1.0.alpha.19/lib/sass/tree/node.rb:351:in `block in perform_children'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/sass-3.1.0.alpha.19/lib/sass/tree/node.rb:351:in `map'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/sass-3.1.0.alpha.19/lib/sass/tree/node.rb:351:in `perform_children'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/sass-3.1.0.alpha.19/lib/sass/tree/node.rb:342:in `perform!'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/sass-3.1.0.alpha.19/lib/sass/tree/rule_node.rb:192:in `perform!'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/sass-3.1.0.alpha.19/lib/sass/tree/node.rb:330:in `_perform'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/sass-3.1.0.alpha.19/lib/sass/tree/node.rb:213:in `perform'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/sass-3.1.0.alpha.19/lib/sass/tree/node.rb:351:in `block in perform_children'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/sass-3.1.0.alpha.19/lib/sass/tree/node.rb:351:in `map'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/sass-3.1.0.alpha.19/lib/sass/tree/node.rb:351:in `perform_children'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/sass-3.1.0.alpha.19/lib/sass/tree/node.rb:342:in `perform!'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/sass-3.1.0.alpha.19/lib/sass/tree/root_node.rb:59:in `perform!'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/sass-3.1.0.alpha.19/lib/sass/tree/node.rb:330:in `_perform'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/sass-3.1.0.alpha.19/lib/sass/tree/node.rb:213:in `perform'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/sass-3.1.0.alpha.19/lib/sass/tree/root_node.rb:37:in `perform'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/sass-3.1.0.alpha.19/lib/sass/tree/root_node.rb:29:in `render'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/sass-3.1.0.alpha.19/lib/sass/engine.rb:265:in `_render'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/sass-3.1.0.alpha.19/lib/sass/engine.rb:237:in `block in render'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/sass-3.1.0.alpha.19/lib/sass/util.rb:334:in `silence_sass_warnings'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/sass-3.1.0.alpha.19/lib/sass/engine.rb:237:in `render'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/sass-3.1.0.alpha.19/lib/sass/plugin/compiler.rb:310:in `update_stylesheet'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/sass-3.1.0.alpha.19/lib/sass/plugin/compiler.rb:178:in `block (2 levels) in update_stylesheets'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/sass-3.1.0.alpha.19/lib/sass/plugin/compiler.rb:172:in `each'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/sass-3.1.0.alpha.19/lib/sass/plugin/compiler.rb:172:in `block in update_stylesheets'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/sass-3.1.0.alpha.19/lib/sass/plugin/compiler.rb:170:in `each'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/sass-3.1.0.alpha.19/lib/sass/plugin/compiler.rb:170:in `update_stylesheets'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/sass-3.1.0.alpha.19/lib/sass/plugin.rb:81:in `update_stylesheets'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/sass-3.1.0.alpha.19/lib/sass/plugin.rb:54:in `check_for_updates'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/sass-3.1.0.alpha.19/lib/sass/plugin/rack.rb:40:in `call'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/head.rb:14:in `call'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/rack-1.2.1/lib/rack/methodoverride.rb:24:in `call'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/flash.rb:182:in `call'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/session/abstract_store.rb:149:in `call'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/cookies.rb:287:in `call'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/activerecord-3.0.1/lib/active_record/query_cache.rb:32:in `block in call'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/activerecord-3.0.1/lib/active_record/connection_adapters/abstract/query_cache.rb:28:in `cache'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/activerecord-3.0.1/lib/active_record/query_cache.rb:12:in `cache'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/activerecord-3.0.1/lib/active_record/query_cache.rb:31:in `call'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/activerecord-3.0.1/lib/active_record/connection_adapters/abstract/connection_pool.rb:355:in `call'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/callbacks.rb:46:in `block in call'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/activesupport-3.0.1/lib/active_support/callbacks.rb:415:in `_run_call_callbacks'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/callbacks.rb:44:in `call'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/rack-1.2.1/lib/rack/sendfile.rb:107:in `call'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/show_exceptions.rb:46:in `call'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/railties-3.0.1/lib/rails/rack/logger.rb:13:in `call'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/rack-1.2.1/lib/rack/runtime.rb:17:in `call'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/activesupport-3.0.1/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/rack-1.2.1/lib/rack/lock.rb:11:in `block in call'
+<internal:prelude>:10:in `synchronize'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/rack-1.2.1/lib/rack/lock.rb:11:in `call'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/static.rb:30:in `call'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/railties-3.0.1/lib/rails/application.rb:168:in `call'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/railties-3.0.1/lib/rails/application.rb:77:in `method_missing'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/railties-3.0.1/lib/rails/rack/log_tailer.rb:14:in `call'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/rack-1.2.1/lib/rack/content_length.rb:13:in `call'
+/Users/austin/.rvm/gems/ruby-1.9.2-rc2@rails3/gems/rack-1.2.1/lib/rack/handler/webrick.rb:52:in `service'
+/Users/austin/.rvm/rubies/ruby-1.9.2-rc2/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+/Users/austin/.rvm/rubies/ruby-1.9.2-rc2/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+/Users/austin/.rvm/rubies/ruby-1.9.2-rc2/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Undefined mixin 'container'.\A         on line 2 of /Users/austin/Sites/pairprogram/app/stylesheets/layout.scss, in `container'\A         from line 2 of /Users/austin/Sites/pairprogram/app/stylesheets/layout.scss\A \A 1: #container-main {\A 2:   @include container;\A 3: }\A 4: \A 5: #left-bar {\A 6:   @include column(10);\A 7: }"; }

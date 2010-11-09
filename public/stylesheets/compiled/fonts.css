@@ -1,0 +1,25 @@
+@font-face {
+  font-family: 'CantarellRegular';
+  src: url("/fonts/cantarell-regular-webfont.eot");
+  src: local("?"), url("/fonts/cantarell-regular-webfont.woff") format("woff"), url("/fonts/cantarell-regular-webfont.ttf") format("truetype"), url("/fonts/cantarell-regular-webfont.svg#webfontVPrO4xIs") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TeenRegular';
+  src: url("/fonts/teen-webfont.eot");
+  src: local("?"), url("/fonts/teen-webfont.woff") format("woff"), url("/fonts/teen-webfont.ttf") format("truetype"), url("/fonts/teen-webfont.svg#webfontO5Roan5w") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* line 17, ../../../app/stylesheets/fonts.scss */
+body, *, label, p, h1, h2, a, input {
+  font-family: "CantarellRegular";
+}
+
+/* line 18, ../../../app/stylesheets/fonts.scss */
+h1 {
+  font-size: 2em;
+}

@@ -14,6 +14,5 @@ EMACS_TAGS
 public/feedbacks
 public/system
 config/initializers/hoptoad.rb
-public/stylesheets/compiled/*css
 **bak
 coverage/*
