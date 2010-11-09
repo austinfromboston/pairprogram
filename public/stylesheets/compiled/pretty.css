@@ -5,23 +5,25 @@
   border: 8px solid white;
   -webkit-box-shadow: 3px 3px 3px #898989;
   -webkit-transform: rotate(-5deg);
+  -moz-box-shadow: 3px 3px 3px #898989;
+  -moz-transform: rotate(-5deg);
 }
 
-/* line 8, ../../../app/stylesheets/pretty.scss */
+/* line 10, ../../../app/stylesheets/pretty.scss */
 nav {
   margin: 10px 0 20px;
 }
-/* line 10, ../../../app/stylesheets/pretty.scss */
+/* line 12, ../../../app/stylesheets/pretty.scss */
 nav ul {
   list-style: none;
 }
-/* line 12, ../../../app/stylesheets/pretty.scss */
+/* line 14, ../../../app/stylesheets/pretty.scss */
 nav ul li {
   display: inline-block;
   list-style: none;
 }
 
-/* line 17, ../../../app/stylesheets/pretty.scss */
+/* line 19, ../../../app/stylesheets/pretty.scss */
 .flash-notice {
   border: 3px solid green;
   border-left: 0;
@@ -32,48 +34,48 @@ nav ul li {
   margin: 25px 0;
 }
 
-/* line 27, ../../../app/stylesheets/pretty.scss */
+/* line 29, ../../../app/stylesheets/pretty.scss */
 h2 {
   font-size: 1.2em;
   margin: 15px 0;
   font-weight: bold;
 }
 
-/* line 32, ../../../app/stylesheets/pretty.scss */
+/* line 34, ../../../app/stylesheets/pretty.scss */
 .resources li {
   list-style: none;
 }
 
-/* line 35, ../../../app/stylesheets/pretty.scss */
+/* line 37, ../../../app/stylesheets/pretty.scss */
 .resource-section {
   margin-bottom: 30px;
 }
 
-/* line 38, ../../../app/stylesheets/pretty.scss */
+/* line 40, ../../../app/stylesheets/pretty.scss */
 .summary {
   margin-bottom: 10px;
 }
 
-/* line 41, ../../../app/stylesheets/pretty.scss */
+/* line 43, ../../../app/stylesheets/pretty.scss */
 .bids-listing {
   list-style: none;
 }
-/* line 43, ../../../app/stylesheets/pretty.scss */
+/* line 45, ../../../app/stylesheets/pretty.scss */
 .bids-listing li:nth-child(odd) {
   background-color: #efc;
   padding: 2px 0;
   margin: 0 0 10px 0;
 }
 
-/* line 49, ../../../app/stylesheets/pretty.scss */
+/* line 51, ../../../app/stylesheets/pretty.scss */
 .image-block {
   display: table-row;
 }
-/* line 51, ../../../app/stylesheets/pretty.scss */
+/* line 53, ../../../app/stylesheets/pretty.scss */
 .image-block img {
   display: table-cell;
 }
-/* line 54, ../../../app/stylesheets/pretty.scss */
+/* line 56, ../../../app/stylesheets/pretty.scss */
 .image-block .description {
   padding-left: 10px;
   display: table-cell;

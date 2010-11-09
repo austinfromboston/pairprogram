@@ -13,7 +13,7 @@
       #container-columns
         #left-bar.column
           - Dir.entries(Rails.root.join('public', 'images', 'pairings')).select { |x| x =~ /jpg$/ }.shuffle.each do |path|
-            = image_tag "/images/pairings/#{path}", :class => 'pair-image', :style => "-webkit-transform: rotate( #{(rand(30) -15).to_i}deg );"
+            = image_tag "/images/pairings/#{path}", :class => 'pair-image', :style => %w[ moz webkit ].map { |browser| "-#{browser}-transform: rotate( #{(rand(30) -15).to_i}deg );" }.join
 
         #main.column
           %header
