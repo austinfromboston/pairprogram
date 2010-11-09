@@ -1,5 +1,9 @@
-%ol
+%ul.bids-listing
   - @bids.each do |bid|
     %li{:'data-name' => "pair-with-#{bid.person.email}"}
-      = bid.person.email
-      = link_to "Request Pair", new_bid_offer_path(bid)
+      .image-block
+        = image_tag bid.person.gravatar_url(:default => 'identicon', :size => 40)
+        .description
+          .email
+            = bid.person.email
+          = link_to "Request Pair", new_bid_offer_path(bid)

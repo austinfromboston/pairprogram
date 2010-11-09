@@ -19,4 +19,8 @@ describe Person do
     p2.should be_valid
 
   end
+  it "should have a gravatar" do
+    person = Factory(:person)
+    person.gravatar_url.should_not be_nil
+  end
 end

@@ -15,6 +15,7 @@ gem 'database_cleaner'
 gem 'capybara'
 gem 'cucumber-rails'
 gem "compass", ">= 0.10.6"
+gem "gravtastic"
 
 # Use unicorn as the web server
 gem 'unicorn'

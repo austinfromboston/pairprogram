@@ -64,6 +64,7 @@ GEM
     gherkin (2.2.9)
       json (~> 1.4.6)
       term-ansicolor (~> 1.0.5)
+    gravtastic (3.1.0)
     haml (3.0.22)
     i18n (0.4.1)
     json (1.4.6)
@@ -134,6 +135,7 @@ DEPENDENCIES
   cucumber-rails
   database_cleaner
   factory_girl
+  gravtastic
   haml
   rails (= 3.0.1)
   rr

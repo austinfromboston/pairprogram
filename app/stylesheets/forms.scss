@@ -1,9 +1,16 @@
-form.madlibs label {
+form.madlibs  {
+  font-size: 1.5em;
+  label {
     display: none;
   }
-form.madlibs .form-field {
+  input {
+    font-size: 1em;
+    color: #66bb66;
+  } 
+  .form-field {
     display: inline;
   }
+}
 
 form input[type=submit] {
   background: #c63929;
@@ -24,4 +31,8 @@ form input[type=submit] {
   text-align: center;
   text-shadow: 0px -1px 1px rgba(0, 0, 0, .6);
   cursor: pointer;
+}
+
+.fields-block {
+  margin: 0 0 20px 0;
 }

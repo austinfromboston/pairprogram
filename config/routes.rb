@@ -8,6 +8,7 @@ Pairprogram::Application.routes.draw do
     resources :offers, :only => [:new, :create, :index]
   end
   resources :offers, :only => :show
+  resources :resources, :only => :index
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

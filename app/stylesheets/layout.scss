@@ -3,7 +3,11 @@
 }
 
 #left-bar {
-  @include column(12);
+  @include column(10);
+}
+
+#main {
+  @include column(13);
 }
 
 #start-block {
@@ -13,12 +17,10 @@
     text-align: center;
   }
   label {
-    display: block;
     font-size: 1.5em;
   }
   input {
     font-size: 1.5em;
-    display:block;
     text-align: center;
     margin: 10px auto 0;
   }

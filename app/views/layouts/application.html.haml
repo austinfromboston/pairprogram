@@ -17,16 +17,17 @@
 
         #main.column
           %header
-            %h1 Pair Program
+            %h1 
+              = link_to "Pair Program", root_path
             #description Two programmers, one computer, creating better solutions through dialog.
             %nav
               %ul
                 %li
-                  = link_to "Why Pair?"
+                  = link_to "Why Pair?", resources_path(:anchor => 'why')
                 %li
-                  = link_to "How it works"
+                  = link_to "How to Pair", resources_path(:anchor => 'howto')
                 %li
-                  = link_to "When to Pair"
+                  = link_to "About PairProgram", resources_path(:anchor => 'whatsup')
 
             - flash.each do |type, message|
               %div{ :class => "flash-#{type}" }

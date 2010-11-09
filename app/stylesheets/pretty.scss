@@ -14,3 +14,46 @@ nav {
       list-style: none;
     }
 }}
+.flash-notice {
+  border: 3px solid green;
+  border-left: 0;
+  border-right: 0;
+  color: #228822;
+  display:block;
+  padding: 5px 0;
+  margin: 25px 0;
+}
+
+h2 {
+  font-size: 1.2em;
+  margin: 15px 0;
+  font-weight: bold;
+}
+.resources li {
+  list-style:none;
+}
+.resource-section {
+  margin-bottom: 30px;
+}
+.summary {
+  margin-bottom: 10px;
+}
+.bids-listing {
+  list-style: none;
+  li:nth-child(odd) {
+    background-color: #efc;
+    padding: 2px 0;
+    margin: 0 0 10px 0; 
+  }
+}
+.image-block {
+  display:table-row;
+  img {
+    display:table-cell;
+  }
+  .description {
+    padding-left: 10px;
+    display:table-cell;
+    vertical-align: top;
+  }
+}
