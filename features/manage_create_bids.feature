@@ -9,11 +9,11 @@ Feature: Find a pair
     When I press "Find"
 
     Then I should see "No pairs"
-    And I should see "Please email me"
+    And I should see "Email me"
     And the "Zip" field should contain "90009"
 
     When I fill in "Email" with "foo@example.com"
-    And I press "Notify me"
+    And I press "Do it"
 
     Then I should see "We'll let you know"
 
@@ -38,6 +38,19 @@ Feature: Find a pair
 
     Then I should see "Pairing Request Sent"
 
+  @wip
+  Scenario: Add my bid when matches exist
+    Given these bids
+      |email            |zip      |
+      |bar@example.com  |11111    | 
+      |foo@example.com  |90009    | 
+    When I am on the new search page
+    And I fill in "Zip Code" with "90009"
+    And I press "Find"
+
+    Then I should see "add me to this list"
+    When I follow "add me to this list"
+    Then I should be on the new bid page
   # Rails generates Delete links that use Javascript to pop up a confirmation
   # dialog and then do a HTTP POST request (emulated DELETE request).
   #

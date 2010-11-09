@@ -1,3 +1,4 @@
+%h2 People Looking For Pairs
 %ul.bids-listing
   - @bids.each do |bid|
     %li{:'data-name' => "pair-with-#{bid.person.email}"}
@@ -7,3 +8,8 @@
           .email
             = bid.person.email
           = link_to "Request Pair", new_bid_offer_path(bid)
+
+%h2 Don't see what you want?
+%p
+  I'm still interested, 
+  = link_to "add me to this list", new_bid_path(:postal_code=> params[:postal_code])
