@@ -16,7 +16,7 @@ gem 'capybara'
 gem 'cucumber-rails'
 gem "compass", ">= 0.10.6"
 gem "gravtastic"
-gem "hassle", :git => 'https://github.com/neonlex/hassle.git'
+gem "hassle", :git => 'https://github.com/koppen/hassle.git'
 
 # Use unicorn as the web server
 gem 'unicorn'

@@ -1,6 +1,6 @@
 GIT
-  remote: https://github.com/neonlex/hassle.git
-  revision: 4996fea736584d337b4ff18f7e795601ca37ef19
+  remote: https://github.com/koppen/hassle.git
+  revision: a08c757bce033cebc7ef8a4a3a831127afcb956a
   specs:
     hassle (0.0.1)
       haml
