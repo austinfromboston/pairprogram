@@ -95,13 +95,28 @@ describe BidsController do
 
     context "when no results are found" do
       it "should render the bidding page" do
-        get :index, :postal_code => 'foo'
+        get :index, :postal_code => 'f1o 1b1'
         response.should be_redirect
         flash[:notice].should match(/no pairs/i)
       end
       it "should put the search value in the params" do
         get :index, :postal_code => '50005'
         response.should redirect_to(new_bid_path(:postal_code => '50005'))
+      end
+    end
+
+    context "when the zip code isn't valid" do
+      it "should redirect back to the new searches page" do
+        get :index, :postal_code => ""
+        response.should redirect_to(new_search_path)
+      end
+      it "should also redirect back to the new searches page" do
+        get :index, :postal_code => "zzb"
+        response.should redirect_to(new_search_path)
+      end
+      it "should put a message in the flash" do
+        get :index, :postal_code => "zzb"
+        flash[:notice].should match('US and Canadian postal codes')
       end
     end
   end

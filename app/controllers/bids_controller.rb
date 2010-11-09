@@ -19,6 +19,10 @@ class BidsController < ApplicationController
   end
 
   def index
+    unless LocationValidator.accepts?(params[:postal_code])
+      flash[:notice] = 'This only works with US and Canadian postal codes.  Patches welcome!'
+      redirect_to new_search_path and return
+    end
     @bids = Bid.where(:zip => params[:postal_code]).where(["expires_at >= ?", Time.now])
     if @bids.empty?
       flash[:notice] = "No pairs are available in your area right now. If you leave your email, we can notify you when someone in your area wants to pair. Your email will not be used for anything else."
