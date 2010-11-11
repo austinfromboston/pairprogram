@@ -1,11 +1,14 @@
 .pair-image {
-  max-height: 250px;
-  max-width: 275px;
-  border: 8px solid white;
-  -webkit-box-shadow: 3px 3px 3px #898989;
-  -webkit-transform: rotate(-5deg);
-  -moz-box-shadow: 3px 3px 3px #898989;
-  -moz-transform: rotate(-5deg);
+  /*-webkit-transform: rotate(-5deg); */
+  /*-moz-transform: rotate(-5deg);*/
+  
+  img {
+    max-height: 250px;
+    max-width: 275px;
+    border: 8px solid white;
+    -webkit-box-shadow: 3px 3px 3px #898989;
+    -moz-box-shadow: 3px 3px 3px #898989;
+  }
 }
 nav {
   margin: 10px 0 20px;
