@@ -66,6 +66,9 @@ GEM
       term-ansicolor (~> 1.0.5)
     gravtastic (3.1.0)
     haml (3.0.22)
+    hoptoad_notifier (2.3.12)
+      activesupport
+      builder
     i18n (0.4.1)
     json (1.4.6)
     json_pure (1.4.6)
@@ -138,6 +141,7 @@ DEPENDENCIES
   factory_girl
   gravtastic
   haml
+  hoptoad_notifier
   rails (= 3.0.1)
   rails-geocoder
   rr
