@@ -1,0 +1,20 @@
+%li{:'data-name' => "pair-with-#{bid.person.name}"}
+  .image-block
+    = image_tag bid.person.gravatar_url(:default => 'identicon', :size => 40), :class => 'person-avatar'
+    .description
+      .name
+        = bid.person.name
+      = link_to "Request Pair", new_bid_offer_path(bid)
+      - if bid.project_description.present?
+        .project_description.desc
+          Project:
+          = bid.project_description
+      - if bid.skills.present?
+        .skills.desc
+          Skills:
+          = bid.skills
+      - if bid.availability.present?
+        .availability.desc
+          Available:
+          = bid.availability
+

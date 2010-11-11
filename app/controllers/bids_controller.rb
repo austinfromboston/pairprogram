@@ -8,7 +8,7 @@ class BidsController < ApplicationController
     @bid = Bid.new params[:bid]
     @bid.person = find_bid_person
     if @bid.save
-      redirect_to(@bid)
+      redirect_to(edit_bid_path(@bid))
     else
       render :new
     end
@@ -27,6 +27,21 @@ class BidsController < ApplicationController
     if @bids.empty?
       flash[:notice] = "No pairs are available in your area right now. If you leave your email, we can notify you when someone in your area wants to pair. Your email will not be used for anything else."
       redirect_to new_bid_path(:postal_code => params[:postal_code])
+    end
+  end
+
+  def edit
+    @bid = Bid.find(params[:id])
+  end
+
+  def update
+    @bid = Bid.find(params[:id])
+    @bid.attributes = params[:bid]
+    if @bid.person.save && @bid.save
+      redirect_to(@bid)
+    else
+      flash[:error] = "There are some problems with your description"
+      render :edit
     end
   end
 

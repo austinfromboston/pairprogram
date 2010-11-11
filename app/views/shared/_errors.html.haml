@@ -1,0 +1,10 @@
+- if item.errors.any? 
+  #errorExplanation
+    %h2
+      = pluralize(item.errors.count, "error") 
+      stopped us from saving your listing
+    %ul
+      - item.errors.full_messages.each do |msg|
+        %li
+          = msg 
+

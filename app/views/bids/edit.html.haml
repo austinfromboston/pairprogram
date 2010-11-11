@@ -1,0 +1,31 @@
+= render :partial => 'shared/errors', :collection => [ @bid, @bid.person], :as => :item
+
+%h2 Here's your listing
+%ul.bids-listing
+  = render @bid
+
+%h2 Spice it up
+
+= form_for @bid, :class => 'bid-details' do |bid_form|
+  .field
+    = bid_form.label :project_description, "Brief description of what you'd like to work on:(srsly brief. 250 chars)"
+    = bid_form.text_area :project_description
+
+  .field
+    = bid_form.label :skills, "Skills you want to offer, use or improve"
+    = bid_form.text_area :skills
+
+  .field
+    = bid_form.label :availability, "When are good times for you to pair"
+    = bid_form.text_field :availability
+
+  .field
+    = bid_form.label :expires_at, "When should we stop showing this listing"
+    = bid_form.date_select :expires_at
+
+  = bid_form.fields_for :person do |person_form|
+    .field
+      = person_form.label :name, "What name should we display?"
+      = person_form.text_field :name
+
+  = bid_form.submit "Post it"

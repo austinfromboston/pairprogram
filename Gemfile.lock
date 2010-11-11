@@ -89,6 +89,7 @@ GEM
       activesupport (= 3.0.1)
       bundler (~> 1.0.0)
       railties (= 3.0.1)
+    rails-geocoder (0.9.5)
     railties (3.0.1)
       actionpack (= 3.0.1)
       activesupport (= 3.0.1)
@@ -138,6 +139,7 @@ DEPENDENCIES
   gravtastic
   haml
   rails (= 3.0.1)
+  rails-geocoder
   rr
   rspec-rails
   sass

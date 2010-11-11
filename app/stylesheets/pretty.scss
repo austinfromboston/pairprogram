@@ -16,6 +16,15 @@ nav {
       list-style: none;
     }
 }}
+.flash-error {
+  border: 3px solid #882222;
+  border-left: 0;
+  border-right: 0;
+  color: #882222;
+  display:block;
+  padding: 5px 0;
+  margin: 25px 0;
+}
 .flash-notice {
   border: 3px solid green;
   border-left: 0;
@@ -57,5 +66,22 @@ h2 {
     padding-left: 10px;
     display:table-cell;
     vertical-align: top;
+  }
+}
+.person-avatar {
+  height: 40px;
+  width: 40px;
+}
+.field_with_errors {
+  color: red;
+  background: #ffdddd;
+}
+.description {
+  .name {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  .desc {
+    margin-bottom: 5px;
   }
 }

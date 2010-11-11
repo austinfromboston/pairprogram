@@ -641,6 +641,21 @@ form input[type=submit] {
   margin: 0 0 20px 0;
 }
 
+/* line 39, ../../../app/stylesheets/forms.scss */
+.field {
+  margin-bottom: 5px;
+}
+/* line 41, ../../../app/stylesheets/forms.scss */
+.field label {
+  display: block;
+}
+
+/* line 45, ../../../app/stylesheets/forms.scss */
+textarea {
+  width: 400px;
+  height: 50px;
+}
+
 @font-face {
   font-family: 'CantarellRegular';
   src: url("/fonts/cantarell-regular-webfont.eot");
@@ -693,6 +708,17 @@ nav ul li {
 }
 
 /* line 19, ../../../app/stylesheets/pretty.scss */
+.flash-error {
+  border: 3px solid #882222;
+  border-left: 0;
+  border-right: 0;
+  color: #882222;
+  display: block;
+  padding: 5px 0;
+  margin: 25px 0;
+}
+
+/* line 28, ../../../app/stylesheets/pretty.scss */
 .flash-notice {
   border: 3px solid green;
   border-left: 0;
@@ -703,50 +729,72 @@ nav ul li {
   margin: 25px 0;
 }
 
-/* line 29, ../../../app/stylesheets/pretty.scss */
+/* line 38, ../../../app/stylesheets/pretty.scss */
 h2 {
   font-size: 1.2em;
   margin: 15px 0;
   font-weight: bold;
 }
 
-/* line 34, ../../../app/stylesheets/pretty.scss */
+/* line 43, ../../../app/stylesheets/pretty.scss */
 .resources li {
   list-style: none;
 }
 
-/* line 37, ../../../app/stylesheets/pretty.scss */
+/* line 46, ../../../app/stylesheets/pretty.scss */
 .resource-section {
   margin-bottom: 30px;
 }
 
-/* line 40, ../../../app/stylesheets/pretty.scss */
+/* line 49, ../../../app/stylesheets/pretty.scss */
 .summary {
   margin-bottom: 10px;
 }
 
-/* line 43, ../../../app/stylesheets/pretty.scss */
+/* line 52, ../../../app/stylesheets/pretty.scss */
 .bids-listing {
   list-style: none;
 }
-/* line 45, ../../../app/stylesheets/pretty.scss */
+/* line 54, ../../../app/stylesheets/pretty.scss */
 .bids-listing li:nth-child(odd) {
   background-color: #efc;
   padding: 2px 0;
   margin: 0 0 10px 0;
 }
 
-/* line 51, ../../../app/stylesheets/pretty.scss */
+/* line 60, ../../../app/stylesheets/pretty.scss */
 .image-block {
   display: table-row;
 }
-/* line 53, ../../../app/stylesheets/pretty.scss */
+/* line 62, ../../../app/stylesheets/pretty.scss */
 .image-block img {
   display: table-cell;
 }
-/* line 56, ../../../app/stylesheets/pretty.scss */
+/* line 65, ../../../app/stylesheets/pretty.scss */
 .image-block .description {
   padding-left: 10px;
   display: table-cell;
   vertical-align: top;
+}
+
+/* line 71, ../../../app/stylesheets/pretty.scss */
+.person-avatar {
+  height: 40px;
+  width: 40px;
+}
+
+/* line 75, ../../../app/stylesheets/pretty.scss */
+.field_with_errors {
+  color: red;
+  background: #ffdddd;
+}
+
+/* line 80, ../../../app/stylesheets/pretty.scss */
+.description .name {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+/* line 84, ../../../app/stylesheets/pretty.scss */
+.description .desc {
+  margin-bottom: 5px;
 }

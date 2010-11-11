@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe BidsController do
+  before do
+    @bid = Factory(:bid)
+  end
   describe "#new" do
     it "should route" do
       {:get => 'bids/new'}.should route_to(:controller => 'bids', :action => 'new')
@@ -15,14 +18,37 @@ describe BidsController do
       assigns[:bid].zip.should == "90009"
     end
   end
+  describe "#edit" do
+    it "should render" do
+      get :edit, :id => @bid.to_param
+      response.should be_success
+      response.should render_template(:edit)
+    end
+  end
+  describe "#update" do
+    context "when the data is valid" do
+      it "should redirect to the show page" do
+        put :update, :id => @bid.to_param, :bid => { :skills => 'None' }#, :person_attributes => { :name => "super-thanks" }}
+        response.should redirect_to(@bid)
+        @bid.reload.skills.should == "None"
+      end
+    end
+    context "when the data is not so good" do
+      it "should re-display the edit page" do
+        Factory(:person, :name => 'foo')
+        put :update, :id => @bid.to_param, :bid => { :skills => 'None', :person_attributes => { :name => "foo" }}
+        response.should render_template(:edit)
+      end
+    end
+  end
   describe "#create" do
     context "when a valid person is created" do
       def make_request
         get :create, :bid => { :zip => '90009', :person_attributes => { :email => 'foo@example.com' }} 
       end
-      it "should redirect to show" do
+      it "should redirect to edit" do
         make_request
-        response.should redirect_to(bid_path(Bid.last))
+        response.should redirect_to(edit_bid_path(Bid.last))
       end
 
       it "should create a bid which expires in one day" do

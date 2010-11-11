@@ -15,6 +15,10 @@ Feature: Find a pair
     When I fill in "Email" with "foo@example.com"
     And I press "Do it"
 
+    Then I should see "Here's your listing"
+    And I should see "Spice it up"
+
+    When I press "Post it"
     Then I should see "We'll let you know"
 
   Scenario: Find existing bid
@@ -26,10 +30,10 @@ Feature: Find a pair
     And I fill in "Zip Code" with "90009"
     And I press "Find"
 
-    Then I should see "foo@example.com"
-    And I should not see "bar@example.com"
+    Then I should see "foo"
+    And I should not see "bar"
 
-    When I follow "Request Pair" within "[data-name='pair-with-foo@example.com']"
+    When I follow "Request Pair" within "[data-name='pair-with-foo']"
 
     Then I should see "Please email me"
 

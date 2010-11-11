@@ -1,2 +1,8 @@
 We'll let you know when someone wants to pair in
 = @bid.zip
+
+%h2 Your Listing
+%ul.bids-listing
+  = render @bid
+
+= link_to "Edit my listing", edit_bid_path(@bid)

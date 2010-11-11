@@ -16,6 +16,7 @@ gem 'capybara'
 gem 'cucumber-rails'
 gem "compass", ">= 0.10.6"
 gem "gravtastic"
+gem "rails-geocoder", :require => "geocoder"
 
 # Use unicorn as the web server
 gem 'unicorn'

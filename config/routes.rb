@@ -4,7 +4,7 @@ Pairprogram::Application.routes.draw do
   resources :searches, :only => :new 
   root :controller => 'searches', :action => 'new'
 
-  resources :bids, :only => [:new, :create, :show, :index] do
+  resources :bids do
     resources :offers, :only => [:new, :create, :index]
   end
   resources :offers, :only => :show

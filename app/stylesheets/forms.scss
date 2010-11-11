@@ -36,3 +36,13 @@ form input[type=submit] {
 .fields-block {
   margin: 0 0 20px 0;
 }
+.field {
+  margin-bottom: 5px;
+  label {
+    display:block;
+  }
+}
+textarea {
+  width: ($blueprint-grid-width  + $blueprint-grid-margin) * 10 ;
+  height: 50px;
+}
