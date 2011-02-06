@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.1'
+gem 'rails', '~>3.0.1'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -18,6 +18,7 @@ gem "compass", ">= 0.10.6"
 gem "gravtastic"
 gem "rails-geocoder", :require => "geocoder"
 gem "hoptoad_notifier"
+gem "omniauth"
 
 # Use unicorn as the web server
 gem 'unicorn'
