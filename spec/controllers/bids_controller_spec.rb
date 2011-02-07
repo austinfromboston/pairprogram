@@ -3,6 +3,8 @@ require 'spec_helper'
 describe BidsController do
   before do
     @bid = Factory(:bid)
+    @current_user = Factory(:person)
+    @bid_attributes = { 'zip' => '90009', 'person_attributes' => { 'email' => 'foo@example.com' }} 
   end
   describe "#new" do
     it "should route" do
@@ -25,65 +27,107 @@ describe BidsController do
       response.should render_template(:edit)
     end
   end
+
   describe "#update" do
-    context "when the data is valid" do
-      it "should redirect to the show page" do
-        put :update, :id => @bid.to_param, :bid => { :skills => 'None' }#, :person_attributes => { :name => "super-thanks" }}
-        response.should redirect_to(@bid)
-        @bid.reload.skills.should == "None"
+    context "when the user is logged in" do
+      before do
+        login_as @current_user
       end
-    end
-    context "when the data is not so good" do
-      it "should re-display the edit page" do
-        Factory(:person, :name => 'foo')
-        put :update, :id => @bid.to_param, :bid => { :skills => 'None', :person_attributes => { :name => "foo" }}
-        response.should render_template(:edit)
+      context "when the data is valid" do
+        it "should redirect to the show page" do
+          put :update, :id => @bid.to_param, :bid => { :skills => 'None' }#, :person_attributes => { :name => "super-thanks" }}
+          response.should redirect_to(@bid)
+          @bid.reload.skills.should == "None"
+        end
+      end
+      context "when the data is not so good" do
+        it "should re-display the edit page" do
+          Factory(:person, :name => 'foo')
+          put :update, :id => @bid.to_param, :bid => { :skills => 'None', :person_attributes => { :name => "foo" }}
+          response.should render_template(:edit)
+        end
       end
     end
   end
+  describe "#complete" do
+    it_should_require_login
+    def make_request
+      get :complete
+    end
+    before do
+      login_as @current_user
+      session[:pending_bid] = @bid_attributes
+    end
+    it "should create a new bid record populated with values from the session" do
+      make_request
+      assigns[:bid].attributes['zip'].should == @bid_attributes['zip']
+    end
+    it "should display the edit bid page" do
+      make_request
+      response.should render_template(:edit)
+    end
+  end
+
   describe "#create" do
     context "when a valid person is created" do
       def make_request
-        get :create, :bid => { :zip => '90009', :person_attributes => { :email => 'foo@example.com' }} 
-      end
-      it "should redirect to edit" do
-        make_request
-        response.should redirect_to(edit_bid_path(Bid.last))
+        get :create, :bid => @bid_attributes
       end
 
-      it "should create a bid which expires in one day" do
-        lambda { make_request }.should change(Bid, :count).by(1)
-        Bid.last.expires_at.to_i.should >= ( 1.day.from_now - 10.seconds ).to_i
-      end
-
-      context "if the person record doesn't exist" do
-        it "should create a person record" do
-          lambda { make_request }.should change(Person, :count).by(1)
-        end
-      end
-      context "if the person record does exist" do
-        before do
-          @person = Factory(:person, :email => 'foo@example.com')
-        end
-        it "should reuse the person record" do
-          lambda { 
-            lambda { make_request }.should_not change(Person, :count)
-          }.should change(@person.bids(true), :count).by(1)
-
-        end
-      end
-      context "when an invalid person is created" do
-        def make_request
-          get :create, :bid => { :zip => '90009', :person_attributes => { :email => 'foo.example.com' }}
-        end
-        it "should render the new bid form with errors" do
+      context "and the person is not logged in" do
+        it "should require login" do
           make_request
-          response.should be_success
-          response.should render_template('new')
-          assigns[:bid].person.should have_at_least(1).errors
+          response.should redirect_to(logins_path)
+        end
+        it "should save the in-progress bid data to the session" do
+          make_request
+          session[:pending_bid].should == @bid_attributes
+        end
+      end
+
+      context "and the person is logged in" do
+        before do
+          login_as @current_user
+        end
+        it "should redirect to edit" do
+          make_request
+          response.should redirect_to(edit_bid_path(Bid.last))
         end
 
+        it "should create a pending bid which expires in one day" do
+          lambda { make_request }.should change(Bid, :count).by(1)
+          Bid.last.expires_at.to_i.should >= ( 1.day.from_now - 10.seconds ).to_i
+          Bid.last.person.should  == @current_user
+        end
       end
+
+      # context "if the person record doesn't exist" do
+      #   it "should create a person record" do
+      #     lambda { make_request }.should change(Person, :count).by(1)
+      #   end
+      # end
+      # context "if the person record does exist" do
+      #   before do
+      #     @person = Factory(:person, :email => 'foo@example.com')
+      #   end
+      #   it "should reuse the person record" do
+      #     lambda { 
+      #       lambda { make_request }.should_not change(Person, :count)
+      #     }.should change(@person.bids(true), :count).by(1)
+      #   end
+      # end
+      # context "when an invalid person is created" do
+      #   def make_request
+      #     get :create, :bid => { :zip => '90009', :person_attributes => { :email => 'foo.example.com' }}
+      #   end
+      #   it "should render the new bid form with errors" do
+      #     make_request
+      #     response.should be_success
+      #     response.should render_template('new')
+      #     assigns[:bid].person.should have_at_least(1).errors
+      #   end
+
+      # end
     end
   end
 

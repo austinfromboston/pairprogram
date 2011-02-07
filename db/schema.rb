@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101110181900) do
+ActiveRecord::Schema.define(:version => 20110207043856) do
 
   create_table "bids", :force => true do |t|
     t.integer  "person_id"
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(:version => 20101110181900) do
     t.text     "availability"
     t.text     "skills"
     t.text     "project_description"
+  end
+
+  create_table "identities", :force => true do |t|
+    t.string   "service"
+    t.string   "identity_key"
+    t.text     "info"
+    t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "offers", :force => true do |t|

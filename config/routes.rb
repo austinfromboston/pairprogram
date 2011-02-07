@@ -1,14 +1,23 @@
 Pairprogram::Application.routes.draw do
+  get "people/show"
+
+  get "logins/index"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
   resources :searches, :only => :new 
   root :controller => 'searches', :action => 'new'
 
+  match 'bids/complete', :to => 'bids#complete', :via => :get, :as => 'complete_bid'
   resources :bids do
     resources :offers, :only => [:new, :create, :index]
   end
+
   resources :offers, :only => :show
   resources :resources, :only => :index
+  resources :logins, :only => :index 
+  resources :people, :only => :show
+  match 'auth/:service/callback', :to => 'logins#callback', :as => 'auth_callback'
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

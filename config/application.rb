@@ -40,5 +40,13 @@ module Pairprogram
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+
+    config.middleware.use OmniAuth::Strategies::Twitter, ENV['TWITTER_KEY'], ENV["TWITTER_SECRET"] do |strategy|
+      OmniAuth.twitter_strategy = strategy
+    end
+    config.generators do |g|
+      g.template_engine :haml
+    end
+    
   end
 end

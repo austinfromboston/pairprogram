@@ -37,4 +37,8 @@ describe Person do
     @person.valid?
     @person.errors[:name].should have(1).error
   end
+  it "has many identities" do
+    @person.identities.create :service => 'twitter', :identity_key => '12345'
+    Person.identified_by(:twitter, '12345').first.should == @person
+  end
 end

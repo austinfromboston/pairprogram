@@ -64,3 +64,4 @@ end
 After "@selenium" do
   Capybara.use_default_driver
 end
+require 'webmock/cucumber'

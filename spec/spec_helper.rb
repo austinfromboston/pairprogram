@@ -1,12 +1,8 @@
-# This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 
-# Requires supporting ruby files with custom matchers and macros, etc,
-# in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
-
 RSpec.configure do |config|
   # == Mock Framework
   #
@@ -28,5 +24,25 @@ RSpec.configure do |config|
   config.before do
     DatabaseCleaner.clean
   end
-        
+  config.include(Module.new {
+    def login_as(user)
+      session[:current_user_id] = user.id
+    end
+  }, :type => :controller)
+  config.extend(Module.new {
+        def it_should_require_login
+          it "should redirect to logins page if user is not logged in" do
+            session[:current_user_id] = nil
+            make_request
+            response.should redirect_to(logins_path)
+          end
+
+          it "should not redirect if user is logged in" do
+            @test_login_user = Factory(:person)
+            session[:current_user_id] = @test_login_user.id
+            make_request
+            response.should_not redirect_to(logins_path)
+          end
+        end
+  }, :type => :controller)
 end

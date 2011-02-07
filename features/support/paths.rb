@@ -10,6 +10,8 @@ module NavigationHelpers
 
     when /the home\s?page/
       '/'
+    when /the twitter auth callback page/
+      '/auth/twitter/callback'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

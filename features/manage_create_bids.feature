@@ -3,6 +3,7 @@ Feature: Find a pair
   User
   wants to register
   
+  @wip
   Scenario: Register new user
     Given I am on the new search page
     And I fill in "Zip Code" with "90009"
@@ -15,6 +16,13 @@ Feature: Find a pair
     When I fill in "Email" with "foo@example.com"
     And I press "Do it"
 
+    Then I should see "Sign in"
+    And I prepare to auth via twitter
+    And I follow "Twitter"
+
+    # When I am on the twitter auth callback page
+    When I am on the complete bid page
+    Then show me the page
     Then I should see "Here's your listing"
     And I should see "Spice it up"
 
@@ -42,7 +50,6 @@ Feature: Find a pair
 
     Then I should see "Pairing Request Sent"
 
-  @wip
   Scenario: Add my bid when matches exist
     Given these bids
       |email            |zip      |

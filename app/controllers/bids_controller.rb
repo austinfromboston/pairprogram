@@ -1,4 +1,7 @@
 class BidsController < ApplicationController
+  before_filter :store_bid, :only => :create
+  before_filter :require_login, :only => [ :create, :update, :complete ]
+
   def new
     @bid = Bid.new :zip => params[:postal_code]
     @bid.build_person
@@ -6,12 +9,19 @@ class BidsController < ApplicationController
 
   def create
     @bid = Bid.new params[:bid]
-    @bid.person = find_bid_person
+    @bid.person = current_user
     if @bid.save
       redirect_to(edit_bid_path(@bid))
     else
       render :new
     end
+  end
+
+  def complete
+    @bid = Bid.new session[:pending_bid]
+    @bid.person = current_user
+    @bid.save
+    render :edit
   end
 
   def show
@@ -47,10 +57,14 @@ class BidsController < ApplicationController
 
   protected
 
-  def find_bid_person
-    bidder_email = params[:bid] && params[:bid][:person_attributes] && params[:bid][:person_attributes][:email]
-    return unless bidder_email
-    Person.find_or_create_by_email bidder_email
+  def require_login
+    return if current_user
+    session[:auth_target] = request.path
+    redirect_to logins_path 
+  end
+
+  def store_bid
+    session[:pending_bid] = params[:bid] unless current_user
   end
 
 end
