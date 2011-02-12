@@ -17,3 +17,4 @@ config/initializers/hoptoad.rb
 **bak
 coverage/*
 config/heroku.yml
+tags

@@ -57,6 +57,7 @@ if defined?(ActiveRecord::Base)
 end
 Before do
   DatabaseCleaner.clean
+  OmniAuth.config.test_mode = true
 end
 Before "@selenium" do
   Capybara.current_driver = :selenium

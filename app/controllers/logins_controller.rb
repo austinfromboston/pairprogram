@@ -3,9 +3,7 @@ class LoginsController < ApplicationController
   end
 
   def callback
-    $stderr.puts 'cats!'
     auth_info = request.env['omniauth.auth']
-    $stderr.puts auth_info, "KKKKKKK"
     user = Person.identified_by(auth_info['provider'], auth_info['uid']).first || create_person(auth_info)
 
     session[:current_user_id] = user.id
