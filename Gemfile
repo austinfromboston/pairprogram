@@ -7,16 +7,20 @@ gem 'rspec-rails'
 gem 'haml'
 gem 'sass'
 gem 'rr'
-gem 'factory_girl'
-gem 'database_cleaner'
-gem 'capybara'
-gem 'cucumber-rails'
 gem "compass", ">= 0.10.6"
 gem "gravtastic"
 gem "rails-geocoder", :require => "geocoder"
 gem "hoptoad_notifier"
 gem "omniauth", :git => 'https://github.com/intridea/omniauth.git'
-gem "webmock"
 
-# Use unicorn as the web server
-gem 'unicorn'
+group :development do
+  gem 'unicorn'
+end
+
+group :test do
+  gem "webmock"
+  gem 'factory_girl'
+  gem 'database_cleaner'
+  gem 'capybara'
+  gem 'cucumber-rails'
+end
