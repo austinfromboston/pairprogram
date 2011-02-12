@@ -1,0 +1,119 @@
+{
+  "status": "OK",
+  "results": [ {
+    "types": [ "route" ],
+    "formatted_address": "Mıdık Mh., 11111. Sk, 01030 Adana, Turkey",
+    "address_components": [ {
+      "long_name": "11111. Sk",
+      "short_name": "11111. Sk",
+      "types": [ "route" ]
+    }, {
+      "long_name": "Mıdık Mh.",
+      "short_name": "Mıdık Mh.",
+      "types": [ "neighborhood", "political" ]
+    }, {
+      "long_name": "Adana",
+      "short_name": "Adana",
+      "types": [ "locality", "political" ]
+    }, {
+      "long_name": "Seyhan",
+      "short_name": "Seyhan",
+      "types": [ "administrative_area_level_2", "political" ]
+    }, {
+      "long_name": "Adana",
+      "short_name": "Adana",
+      "types": [ "administrative_area_level_1", "political" ]
+    }, {
+      "long_name": "Turkey",
+      "short_name": "TR",
+      "types": [ "country", "political" ]
+    }, {
+      "long_name": "01030",
+      "short_name": "01030",
+      "types": [ "postal_code" ]
+    } ],
+    "geometry": {
+      "location": {
+        "lat": 36.9525160,
+        "lng": 35.3153310
+      },
+      "location_type": "GEOMETRIC_CENTER",
+      "viewport": {
+        "southwest": {
+          "lat": 36.9494249,
+          "lng": 35.3145739
+        },
+        "northeast": {
+          "lat": 36.9557201,
+          "lng": 35.3208691
+        }
+      },
+      "bounds": {
+        "southwest": {
+          "lat": 36.9505390,
+          "lng": 35.3151220
+        },
+        "northeast": {
+          "lat": 36.9546060,
+          "lng": 35.3203210
+        }
+      }
+    },
+    "partial_match": true
+  }, {
+    "types": [ "route" ],
+    "formatted_address": "11111 St, Brackenfell 7560, South Africa",
+    "address_components": [ {
+      "long_name": "11111 St",
+      "short_name": "11111 St",
+      "types": [ "route" ]
+    }, {
+      "long_name": "St Michaels",
+      "short_name": "St Michaels",
+      "types": [ "sublocality", "political" ]
+    }, {
+      "long_name": "Brackenfell",
+      "short_name": "Brackenfell",
+      "types": [ "locality", "political" ]
+    }, {
+      "long_name": "Cape Town",
+      "short_name": "Cape Town",
+      "types": [ "administrative_area_level_3", "political" ]
+    }, {
+      "long_name": "Cape Town",
+      "short_name": "Cape Town",
+      "types": [ "administrative_area_level_2", "political" ]
+    }, {
+      "long_name": "Western Cape",
+      "short_name": "WC",
+      "types": [ "administrative_area_level_1", "political" ]
+    }, {
+      "long_name": "South Africa",
+      "short_name": "ZA",
+      "types": [ "country", "political" ]
+    }, {
+      "long_name": "7560",
+      "short_name": "7560",
+      "types": [ "postal_code" ]
+    } ],
+    "geometry": {
+      "location": {
+        "lat": -33.8755400,
+        "lng": 18.6919400
+      },
+      "location_type": "GEOMETRIC_CENTER",
+      "viewport": {
+        "southwest": {
+          "lat": -33.8786876,
+          "lng": 18.6887924
+        },
+        "northeast": {
+          "lat": -33.8723924,
+          "lng": 18.6950876
+        }
+      }
+    },
+    "partial_match": true
+  } ]
+}
+
