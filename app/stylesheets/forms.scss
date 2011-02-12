@@ -12,25 +12,59 @@ form.madlibs  {
   }
 }
 
+
 form input[type=submit] {
-  background: #c63929;
-  background: -moz-linear-gradient(0% 100% 90deg, #008911 0%, #00B517 50%, #29c639 50%, #2EEE43 100%);
-  background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #2eee43), color-stop(0.5, #29c639), color-stop(0.5, #00b517), color-stop(1, #008911));
-  border: 1px solid #009511;
+  background: #40af51;
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  box-shadow: inset 0px 0px 0px 1px rgba(100, 255, 115, 0.4), 0 1px 3px #333;
-  -moz-box-shadow: inset 0px 0px 0px 1px rgba(100, 255, 115, 0.4), 0 1px 3px #333;
-  -webkit-box-shadow: inset 0px 0px 0px 1px rgba(100, 255, 115, 0.4), 0 1px 3px #333;
-  color: #fff;
-  font-weight: bold;
-  letter-spacing: 1px;
-  line-height: 1;
-  padding: 14px;
-  text-align: center;
-  text-shadow: 0px -1px 1px rgba(0, 0, 0, .6);
-  cursor: pointer;
+  background: -moz-linear-gradient(0% 100% 90deg, #37ea40, #52e898);
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#52e868), to(#37ea40));
+  border-top: 1px solid #40af51;
+  border-right: 1px solid #2ea339;
+  border-bottom: 1px solid #209a25;
+  border-left: 1px solid #2ea339;
+  -moz-box-shadow: inset 0 1px 0 0 #72eb99, 0 1px 2px 0 #b3b3b3;
+  -webkit-box-shadow: inset 0 1px 0 0 #72eb99, 0 1px 2px 0 #b3b3b3;
+  color: #fafaff;
+  text-shadow: 0 -1.5px 1.5px #32bc75;  
+  -webkit-background-clip: padding-box;
+  padding: 0 20px;
+  &:hover {
+    background: #2ad751;
+    background: -moz-linear-gradient(0% 100% 90deg, #20cb3b, #3ee56e);
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#3ee56e), to(#20cb3b));
+    border-top: 1px solid #2aa643;
+    border-right: 1px solid #169928;
+    border-bottom: 1px solid #078f12;
+    border-left: 1px solid #169928;
+    -moz-box-shadow: inset 0 1px 0 0 #62e991;
+    -webkit-box-shadow: inset 0 1px 0 0 #62e991;
+    cursor: pointer;
+    text-shadow: 0 -1.5px 1.5px #1dab32;
+  }
+  &:active {
+    background: #32d352;
+    border: 1px solid #158c1c;
+    border-bottom: 1px solid #0e8e10;
+    -moz-box-shadow: inset 0 0 6px 3px #16b527, 0 1px 0 0 #fff;
+    -webkit-box-shadow: inset 0 0 6px 3px #16b527, 0 1px 0 0 #fff;
+    text-shadow: 0 -1px 1px #23a431;
+  }
+  &[disabled] &[disabled]:hover, &[disabled]:active {
+    background: #999;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#dadada), to(#f3f3f3));
+    border-top: 1px solid #c5c5c5;
+    border-right: 1px solid #cecece;
+    border-bottom: 1px solid #d9d9d9;
+    border-left: 1px solid #cecece;
+    color: #8f8f8f;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    cursor: not-allowed;
+    text-shadow: 0 -1px 1px #ebebeb;
+  }
 }
 
 .fields-block {
