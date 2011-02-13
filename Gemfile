@@ -13,12 +13,8 @@ gem "rails-geocoder", :require => "geocoder"
 gem "hoptoad_notifier"
 gem "omniauth", :git => 'https://github.com/intridea/omniauth.git'
 
-group :development do
-  gem 'unicorn'
-end
-
 group :test do
-  gem "webmock"
+  gem 'webmock'
   gem 'factory_girl'
   gem 'database_cleaner'
   gem 'capybara'
