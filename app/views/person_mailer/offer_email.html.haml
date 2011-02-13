@@ -1,0 +1,29 @@
+!!! 5
+%head
+  %title
+    Time to Pair Program
+%body
+  %h1 Time to Pair Program
+  %p
+    = @sender.name
+    wants to pair with you.
+  %p 
+    You can contact them to arrange a time and a place at 
+    = mail_to @sender.email, @sender.email
+
+  %h2 Remember, before you pair:
+  %ul
+    %li Agree on a time commitment
+    %li Agree how the time will be spent. You can spend the whole time working on one project or you can agree to "trade time' across mutual projects. 
+
+  %h2 While you pair:
+  %ul
+    %li If possible, have 2 mice and 2 keyboards. Use an editor that both parties can be comfortable and productive with.
+    %li Try not to spend too much time "driving", that is, operating the mouse and keyboard.  
+    %li If you notice your partner driving too much, simply suggest that maybe you should drive for a bit.
+    %li 
+      If your partner is not engaged with the problem, slow down.  Ask questions out loud, even if you have a solution in mind.  
+      This may slow progress, but an engaged pair is better able to catch potential bugs, and to offer alternate solutions.
+    %li 
+      If you have a disagreement, keep talking.  Give your pair's ideas the benefit of the doubt.  
+      Try to come to consensus about how to move forward before starting to write code.

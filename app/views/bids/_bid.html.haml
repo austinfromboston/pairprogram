@@ -1,9 +1,9 @@
-%li{:'data-name' => "pair-with-#{bid.person.name}"}
+%li{:'data-name' => "pair-with-#{bid.bidder.name}"}
   .image-block
-    = image_tag bid.person.gravatar_url(:default => 'identicon', :size => 40), :class => 'person-avatar'
+    = image_tag bid.bidder.gravatar_url(:default => 'identicon', :size => 40), :class => 'person-avatar'
     .description
       .name
-        = bid.person.name
+        = bid.bidder.name
       = link_to "Request Pair", new_bid_offer_path(bid)
       - if bid.project_description.present?
         .project_description.desc

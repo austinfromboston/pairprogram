@@ -4,12 +4,12 @@ class BidsController < ApplicationController
 
   def new
     @bid = Bid.new :zip => params[:postal_code]
-    @bid.build_person
+    @bid.build_bidder
   end
 
   def create
     @bid = Bid.new params[:bid]
-    @bid.person = current_user
+    @bid.bidder = current_user
     if @bid.save
       redirect_to(edit_bid_path(@bid))
     else
@@ -19,7 +19,7 @@ class BidsController < ApplicationController
 
   def complete
     @bid = Bid.new session[:pending_bid]
-    @bid.person = current_user
+    @bid.bidder = current_user
     @bid.save
     render :edit
   end
@@ -47,7 +47,7 @@ class BidsController < ApplicationController
   def update
     @bid = Bid.find(params[:id])
     @bid.attributes = params[:bid]
-    if @bid.person.save && @bid.save
+    if @bid.bidder.save && @bid.save
       redirect_to(@bid)
     else
       flash[:error] = "There are some problems with your description"

@@ -3,8 +3,8 @@ require 'spec_helper'
 describe BidsController do
   before do
     @bid = Factory(:bid)
-    @current_user = Factory(:person)
-    @bid_attributes = { 'zip' => '90009', 'person_attributes' => { 'email' => 'foo@example.com' }} 
+    @current_user = Factory(:bidder)
+    @bid_attributes = { 'zip' => '90009', 'bidder_attributes' => { 'email' => 'foo@example.com' }} 
   end
   describe "#new" do
     it "should route" do
@@ -35,15 +35,15 @@ describe BidsController do
       end
       context "when the data is valid" do
         it "should redirect to the show page" do
-          put :update, :id => @bid.to_param, :bid => { :skills => 'None' }#, :person_attributes => { :name => "super-thanks" }}
+          put :update, :id => @bid.to_param, :bid => { :skills => 'None' }
           response.should redirect_to(@bid)
           @bid.reload.skills.should == "None"
         end
       end
       context "when the data is not so good" do
         it "should re-display the edit page" do
-          Factory(:person, :name => 'foo')
-          put :update, :id => @bid.to_param, :bid => { :skills => 'None', :person_attributes => { :name => "foo" }}
+          Factory(:bidder, :name => 'foo')
+          put :update, :id => @bid.to_param, :bid => { :skills => 'None', :bidder_attributes => { :name => "foo" }}
           response.should render_template(:edit)
         end
       end
@@ -69,12 +69,12 @@ describe BidsController do
   end
 
   describe "#create" do
-    context "when a valid person is created" do
+    context "when a valid bidderis created" do
       def make_request
         get :create, :bid => @bid_attributes
       end
 
-      context "and the person is not logged in" do
+      context "and the bidder is not logged in" do
         it "should require login" do
           make_request
           response.should redirect_to(logins_path)
@@ -85,7 +85,7 @@ describe BidsController do
         end
       end
 
-      context "and the person is logged in" do
+      context "and the is logged in" do
         before do
           login_as @current_user
         end
@@ -97,37 +97,9 @@ describe BidsController do
         it "should create a pending bid which expires in one day" do
           lambda { make_request }.should change(Bid, :count).by(1)
           Bid.last.expires_at.to_i.should >= ( 1.day.from_now - 10.seconds ).to_i
-          Bid.last.person.should  == @current_user
+          Bid.last.bidder.should  == @current_user
         end
       end
-
-      # context "if the person record doesn't exist" do
-      #   it "should create a person record" do
-      #     lambda { make_request }.should change(Person, :count).by(1)
-      #   end
-      # end
-      # context "if the person record does exist" do
-      #   before do
-      #     @person = Factory(:person, :email => 'foo@example.com')
-      #   end
-      #   it "should reuse the person record" do
-      #     lambda { 
-      #       lambda { make_request }.should_not change(Person, :count)
-      #     }.should change(@person.bids(true), :count).by(1)
-      #   end
-      # end
-      # context "when an invalid person is created" do
-      #   def make_request
-      #     get :create, :bid => { :zip => '90009', :person_attributes => { :email => 'foo.example.com' }}
-      #   end
-      #   it "should render the new bid form with errors" do
-      #     make_request
-      #     response.should be_success
-      #     response.should render_template('new')
-      #     assigns[:bid].person.should have_at_least(1).errors
-      #   end
-
-      # end
     end
   end
 

@@ -1,10 +1,10 @@
 = form_for @bid, :html => { :class => 'madlibs' } do |bid_form|
   .fields-block
-    = bid_form.fields_for :person do |person_fields|
+    = bid_form.fields_for :bidder do |bidder_fields|
       .form-field
         Email me at
-        = person_fields.label :email
-        = person_fields.text_field :email, :placeholder => "enter_your_email@example.com", :size => 40, :autofocus => true
+        = bidder_fields.label :email
+        = bidder_fields.text_field :email, :placeholder => "enter_your_email@example.com", :size => 40, :autofocus => true
 
     .form-field
       when anyone in 

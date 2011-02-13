@@ -10,10 +10,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110207043856) do
+ActiveRecord::Schema.define(:version => 20110213014557) do
 
   create_table "bids", :force => true do |t|
-    t.integer  "person_id"
+    t.integer  "bidder_id"
     t.string   "zip"
     t.datetime "expires_at"
     t.datetime "created_at"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(:version => 20110207043856) do
   end
 
   create_table "offers", :force => true do |t|
-    t.integer  "person_id"
+    t.integer  "sender_id"
     t.integer  "bid_id"
     t.datetime "created_at"
     t.datetime "updated_at"

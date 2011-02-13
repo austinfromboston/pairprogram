@@ -38,7 +38,7 @@ describe LoginsController do
     end
     context "when the user is new" do
       it "creates a new identity and person record" do
-        session[:pending_bid] = { 'zip' => '55555', 'person_attributes' => { 'email' => 'fake@example.com' }}
+        session[:pending_bid] = { 'zip' => '55555', 'bidder_attributes' => { 'email' => 'fake@example.com' }}
         lambda {
           lambda { make_request }.should change(Person, :count).by(1)
         }.should change(Identity, :count).by(1)
@@ -54,7 +54,7 @@ describe LoginsController do
         @person.identities.create :service => 'twitter', :identity_key => '12345'
       end
       it "retrieves the existing record" do
-        session[:pending_bid] = { 'zip' => 94609, 'person_attributes' => {"email" => @person.email} }
+        session[:pending_bid] = { 'zip' => 94609, 'bidder_attributes' => {"email" => @person.email} }
         lambda {
           lambda { make_request }.should_not change(Person, :count)
         }.should_not change(Identity, :count)
@@ -67,7 +67,7 @@ describe LoginsController do
 
       context "when there's a pending bid" do
         it "redirects to complete bid" do
-          session[:pending_bid] = { 'zip' => 94609, 'person_attributes' => {"email" => "foo@example.com"} }
+          session[:pending_bid] = { 'zip' => 94609, 'bidder_attributes' => {"email" => "foo@example.com"} }
           make_request
           response.should redirect_to(complete_bid_path)
         end
@@ -75,7 +75,6 @@ describe LoginsController do
 
       context "when there is no pending bid" do
         it "redirects to the persons page" do
-          #session[:pending_bid] = { 'zip' => 94609, 'person_attributes' => {"email" => @person.email} }
           make_request
           response.should redirect_to(@person)
         end

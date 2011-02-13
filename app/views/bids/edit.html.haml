@@ -1,4 +1,4 @@
-= render :partial => 'shared/errors', :collection => [ @bid, @bid.person], :as => :item
+= render :partial => 'shared/errors', :collection => [ @bid, @bid.bidder], :as => :item
 
 %h2 Here's your listing
 %ul.bids-listing
@@ -23,9 +23,9 @@
     = bid_form.label :expires_at, "When should we stop showing this listing"
     = bid_form.date_select :expires_at
 
-  = bid_form.fields_for :person do |person_form|
+  = bid_form.fields_for :bidder do |bidder_form|
     .field
-      = person_form.label :name, "What name should we display?"
-      = person_form.text_field :name
+      = bidder_form.label :name, "What name should we display?"
+      = bidder_form.text_field :name
 
   = bid_form.submit "Post it"

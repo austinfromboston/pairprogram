@@ -14,7 +14,7 @@ class LoginsController < ApplicationController
   protected
 
   def create_person(auth_info)
-    person = Person.new :name => auth_info['user_info']['name'], :email => session[:pending_bid]['person_attributes']['email']
+    person = Person.new :name => auth_info['user_info']['name'], :email => session[:pending_bid]['bidder_attributes']['email']
     person.identities.build :service => auth_info['provider'], :identity_key => auth_info['uid'], :info => auth_info['user_info']
     person.save!
     person
