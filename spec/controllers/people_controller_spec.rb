@@ -4,9 +4,10 @@ describe PeopleController do
   before do
     @person = Factory(:person)
   end
+
   describe "GET 'show'" do
     it "should be successful" do
-      get 'show'
+      get 'show', :id => @person.to_param
       response.should be_success
     end
   end

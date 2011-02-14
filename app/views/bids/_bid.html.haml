@@ -4,6 +4,7 @@
     .description
       .name
         = bid.bidder.name
+        = link_to "Report Abuse", new_bid_abuse_report_path(bid), :class => 'report-abuse'
       = link_to "Request Pair", new_bid_offer_path(bid)
       - if bid.project_description.present?
         .project_description.desc

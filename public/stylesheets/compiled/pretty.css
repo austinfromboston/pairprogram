@@ -117,3 +117,13 @@ h2 {
 .description .desc {
   margin-bottom: 5px;
 }
+
+/* line 91, ../../../app/stylesheets/pretty.scss */
+.report-abuse {
+  background: url(/images/red_flag.png) no-repeat;
+  display: inline-block;
+  overflow: hidden;
+  color: transparent;
+  width: 16px;
+  height: 16px;
+}

@@ -1,0 +1,9 @@
+%h2 Report Abuse
+= form_for [@bid, @abuse_report] do |report|
+  = report.label :reason, "This post is out of line.  It is"
+  = report.select :reason, ['Spam', 'Offensive', 'Irrelevant', 'Really Quite Different']
+  = report.label :description, "I would like to give the poster a piece of my mind.  I would say"
+  = report.text_area :description
+  = report.submit "Take That"
+
+

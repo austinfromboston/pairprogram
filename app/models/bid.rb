@@ -8,6 +8,7 @@ class Bid < ActiveRecord::Base
   accepts_nested_attributes_for :bidder
 
   before_validation :set_default_expiration, :on => :create
+  has_many :abuse_reports
   geocoded_by :zip
 
   def set_default_expiration

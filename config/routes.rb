@@ -1,8 +1,4 @@
 Pairprogram::Application.routes.draw do
-  get "people/show"
-
-  get "logins/index"
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
   resources :searches, :only => :new 
@@ -11,6 +7,7 @@ Pairprogram::Application.routes.draw do
   match 'bids/complete', :to => 'bids#complete', :via => :get, :as => 'complete_bid'
   resources :bids do
     resources :offers, :only => [:new, :create, :index]
+    resources :abuse_reports, :only => [:new, :create, :index]
   end
 
   resources :offers, :only => :show
