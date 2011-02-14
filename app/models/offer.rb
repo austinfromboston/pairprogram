@@ -6,6 +6,6 @@ class Offer < ActiveRecord::Base
 
   after_create :send_notification
   def send_notification
-    PersonMailer.offer_email(self).deliver 
+    PersonMailer.offer_email(self).deliver if recipient.allow_email?
   end
 end

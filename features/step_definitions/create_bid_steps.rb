@@ -46,5 +46,6 @@ Then /\"([^\"]+)\" should receive an offer email from \"([^\"]+)\"/ do |bidder, 
   offer_email = ActionMailer::Base.deliveries.first
   offer_email.should_not be_nil
   offer_email.subject.should == "#{person_offering} is offering to pair with you" 
+  offer_email.encoded.should =~ /To stop receiving these messages/
 end
 

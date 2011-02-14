@@ -1,0 +1,10 @@
+%h2 Edit Info
+= form_for @person do |f|
+  %ul
+    %li
+      = f.radio_button :allow_email, false
+      = f.label :allow_email_false, "Do not email me.  I will come to the site to view responses."
+    %li
+      = f.radio_button :allow_email, true
+      = f.label :allow_email_true, "Send me email to notify me of interested pairs"
+  = f.submit "Update Info"

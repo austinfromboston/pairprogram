@@ -15,8 +15,8 @@ Pairprogram::Application.routes.draw do
 
   resources :offers, :only => :show
   resources :resources, :only => :index
-  resources :logins, :only => :index 
-  resources :people, :only => :show
+  resources :logins, :only => :index
+  resources :people, :only => [:show, :edit, :update]
   match 'auth/:service/callback', :to => 'logins#callback', :as => 'auth_callback'
 
   # Sample of regular route:

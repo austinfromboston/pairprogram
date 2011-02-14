@@ -41,4 +41,8 @@ describe Person do
     @person.identities.create :service => 'twitter', :identity_key => '12345'
     Person.identified_by(:twitter, '12345').first.should == @person
   end
+
+  it "allows email by default" do
+    @person.allow_email.should be_true
+  end
 end

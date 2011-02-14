@@ -12,10 +12,19 @@ class Person < ActiveRecord::Base
   include Gravtastic
   gravtastic
 
-  before_validation :create_default_name
+  before_validation :create_default_name, :on => :create
+  before_validation :setup_preferences, :on => :create
 
   def create_default_name
     return unless email
     self.name ||= email[/(^[^@]+)@/, 1]
+  end
+
+  def setup_preferences
+    self.allow_email = true
+  end
+
+  def update_allowed_attributes(values)
+    update_attributes values.delete_if { |key, value| !['allow_email'].include?(key) }
   end
 end
