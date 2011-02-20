@@ -1,0 +1,32 @@
+%h1 Dashboard
+
+%h2 Open Postings
+- if @person.bids.open.empty?
+  %p 
+    You have no open postings right now.
+    = link_to "Make one!", new_bid_path
+%ul
+  - @person.bids.open.each do |bid|
+    .dashboard-bid
+      = render bid
+      = link_to "Edit", edit_bid_path(bid)
+      = link_to "Remove", edit_bid_path(bid), :class => 'delete-link'
+      .delete-block.hidden
+        = button_to "Remove", bid_path(bid), :method => :delete
+
+      %h3 Offers Received
+      %ul
+        - bid.offers.each do |offer|
+          %li
+            = offer.sender.name
+            = mail_to offer.sender.email, offer.sender.email, :encode => :javascript
+
+%h2 Open Offers
+- if @person.offers.open.empty?
+  %p 
+    You have no open offers right now.
+    = link_to "Review available pairs!", root_path
+%ul
+  - @person.offers.open.each do |offer|
+    .dashboard-offer{:'data-name' => "offer-to-pair-with-#{offer.recipient.name}"}
+      = render offer.bid

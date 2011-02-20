@@ -32,7 +32,7 @@ RSpec.configure do |config|
     end
   }, :type => :controller)
   config.extend(Module.new {
-        def it_should_require_login
+        def it_should_require_login(options={})
           it "should redirect to logins page if user is not logged in" do
             session[:current_user_id] = nil
             make_request
@@ -40,7 +40,7 @@ RSpec.configure do |config|
           end
 
           it "should not redirect if user is logged in" do
-            @test_login_user = Factory(:person)
+            @test_login_user = @current_user || Factory(:person)
             session[:current_user_id] = @test_login_user.id
             make_request
             response.should_not redirect_to(logins_path)

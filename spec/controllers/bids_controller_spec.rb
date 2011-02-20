@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe BidsController do
   before do
-    @bid = Factory(:bid)
     @current_user = Factory(:bidder)
+    @bid = Factory(:bid, :bidder => @current_user)
     @bid_attributes = { 'zip' => '90009', 'bidder_attributes' => { 'email' => 'foo@example.com' }} 
   end
   describe "#new" do
@@ -20,9 +20,15 @@ describe BidsController do
       assigns[:bid].zip.should == "90009"
     end
   end
+
   describe "#edit" do
-    it "should render" do
+    it_should_require_login
+    def make_request
       get :edit, :id => @bid.to_param
+    end
+    it "should render" do
+      login_as @current_user
+      make_request
       response.should be_success
       response.should render_template(:edit)
     end
@@ -36,7 +42,7 @@ describe BidsController do
       context "when the data is valid" do
         it "should redirect to the show page" do
           put :update, :id => @bid.to_param, :bid => { :skills => 'None' }
-          response.should redirect_to(@bid)
+          response.should redirect_to(dashboard_path)
           @bid.reload.skills.should == "None"
         end
       end
@@ -160,6 +166,37 @@ describe BidsController do
         get :index, :postal_code => "zzb"
         flash[:notice].should match('US and Canadian postal codes')
       end
+    end
+  end
+
+  describe "destroy" do
+    def make_request
+      delete :destroy, :id => @bid.id
+    end
+
+    context "login behavior" do
+      it_should_require_login
+    end
+
+    context "when logged in" do
+      before do
+        login_as @current_user
+      end
+      it "should not allow users to destroy bids that dont belong to them" do
+        @bid = Factory(:bid)
+        expect{
+          expect{ make_request }.to raise_error(ActiveRecord::RecordNotFound)
+        }.not_to change(Bid, :count)
+      end
+
+      context "when the bid belongs to the current user" do
+        it "destroys the bid and returns to the dashboard" do
+          expect{ make_request }.to change(@current_user.bids, :count)
+          response.should redirect_to(dashboard_url)
+          flash[:notice].should == "Posting removed"
+        end
+      end
+
     end
   end
 end

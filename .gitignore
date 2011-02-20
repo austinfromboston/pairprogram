@@ -18,4 +18,6 @@ config/initializers/hoptoad.rb
 coverage/*
 config/heroku.yml
 tags
+vendor/ruby
+Termfile
 NERD_tree*

@@ -1,6 +1,6 @@
 class BidsController < ApplicationController
   before_filter :store_bid, :only => :create
-  before_filter :require_login, :only => [ :create, :update, :complete ]
+  before_filter :require_login, :only => [ :create, :edit, :update, :complete, :destroy ]
 
   def new
     @bid = Bid.new :zip => params[:postal_code]
@@ -45,23 +45,25 @@ class BidsController < ApplicationController
   end
 
   def update
-    @bid = Bid.find(params[:id])
+    @bid = current_user.bids.find(params[:id])
     @bid.attributes = params[:bid]
     if @bid.bidder.save && @bid.save
-      redirect_to(@bid)
+      flash[:notice] = "We'll let you know when a pair becomes available"
+      redirect_to(dashboard_path)
     else
       flash[:error] = "There are some problems with your description"
       render :edit
     end
   end
 
-  protected
-
-  def require_login
-    return if current_user
-    session[:auth_target] = request.path
-    redirect_to logins_path 
+  def destroy
+    @bid = current_user.bids.find(params[:id])
+    @bid.destroy
+    flash[:notice] = "Posting removed"
+    redirect_to dashboard_url
   end
+
+  protected
 
   def store_bid
     session[:pending_bid] = params[:bid] unless current_user

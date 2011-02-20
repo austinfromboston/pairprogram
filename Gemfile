@@ -12,6 +12,7 @@ gem "gravtastic"
 gem "rails-geocoder", :require => "geocoder"
 gem "hoptoad_notifier"
 gem "omniauth", :git => 'https://github.com/intridea/omniauth.git'
+gem "jquery-rails"
 
 group :test do
   gem 'webmock'

@@ -2,7 +2,6 @@ Feature: Review bids
   Person wants to review bids
   in order to find a pair
 
-  @wip
   Scenario: Reporting a spammy user
     Given these bids
       |email                  |zip      |

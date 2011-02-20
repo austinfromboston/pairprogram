@@ -2,7 +2,7 @@ Feature: Find a pair
   In order to Find a pair
   User
   wants to register
-  
+
   Scenario: Register new user
     Given I am on the new search page
     And I fill in "Zip Code" with "90009"
@@ -27,8 +27,8 @@ Feature: Find a pair
   Scenario: Find existing bid
     Given these bids
       |email            |zip      |
-      |bar@example.com  |11111    | 
-      |foo@example.com  |90009    | 
+      |bar@example.com  |11111    |
+      |foo@example.com  |90009    |
     When I am on the new search page
     And I fill in "Zip Code" with "90009"
     And I press "Find"
@@ -57,3 +57,13 @@ Feature: Find a pair
     Then I should see "add me to this list"
     When I follow "add me to this list"
     Then I should be on the new bid page
+
+  Scenario: Review outstanding bids
+    Given these bids
+      |email            |zip      |
+      |bar@example.com  |11111    |
+      |foo@example.com  |90009    |
+    And I am logged in as bar@example.com
+    And I am on the dashboard page
+    Then I should see "bar"
+    Then I should see "Request Pair"

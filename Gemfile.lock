@@ -113,6 +113,9 @@ GEM
       activesupport
       builder
     i18n (0.5.0)
+    jquery-rails (0.2.7)
+      rails (~> 3.0)
+      thor (~> 0.14.4)
     json (1.4.6)
     json_pure (1.5.1)
     mail (2.2.15)
@@ -207,6 +210,7 @@ DEPENDENCIES
   gravtastic
   haml
   hoptoad_notifier
+  jquery-rails
   omniauth!
   rails (~> 3.0.1)
   rails-geocoder

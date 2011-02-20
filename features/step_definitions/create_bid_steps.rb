@@ -20,7 +20,7 @@ end
 Given /^these bids$/ do |bid_data|
   bid_data.hashes.each do |row|
     person = Person.find_or_create_by_email row['email']
-    person.bids.create :zip => row['zip']
+    person.bids.create! :zip => row['zip']
   end
 end
 
@@ -29,9 +29,9 @@ Given /there is data/ do
 end
 
 When /I prepare to auth via (\w+)/ do |service|
-  OmniAuth.config.mock_auth[:twitter] = {
+  OmniAuth.config.mock_auth[service.underscore.to_sym] = {
     'uid' => '123545',
-    'provider' => 'twitter',
+    'provider' => service.underscore,
     'user_info' => {
       'name' => 'fake user'
     }
@@ -49,3 +49,12 @@ Then /\"([^\"]+)\" should receive an offer email from \"([^\"]+)\"/ do |bidder, 
   offer_email.encoded.should =~ /To stop receiving these messages/
 end
 
+When /I am logged in as ([@\.\w]+)/ do |email|
+  user = Person.find_or_create_by_email email
+  user.identities.find_or_create_by_service_and_identity_key 'twitter', '123545'
+  steps  %Q[
+    Then I prepare to auth via twitter
+    And I am on the logins page
+    And I follow "Twitter"
+  ]
+end
