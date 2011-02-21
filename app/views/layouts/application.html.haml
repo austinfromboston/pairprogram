@@ -31,6 +31,11 @@
                   = link_to "How to Pair", resources_path(:anchor => 'howto')
                 %li
                   = link_to "About PairProgram", resources_path(:anchor => 'whatsup')
+                %li
+                  - if current_user
+                    = link_to "Sign out", logout_path, :method => :delete
+                  - else
+                    = link_to "Sign in", logins_path
 
             - flash.each do |type, message|
               %div{ :class => "flash-#{type}" }

@@ -1,4 +1,6 @@
 class LoginsController < ApplicationController
+  before_filter :require_login, :only => :destroy
+
   def index
   end
 
@@ -7,8 +9,14 @@ class LoginsController < ApplicationController
     user = Person.identified_by(auth_info['provider'], auth_info['uid']).first || create_person(auth_info)
 
     session[:current_user_id] = user.id
-    redirect_to complete_bid_path and return if session[:pending_bid]
-    redirect_to person_path(current_user)
+    redirect_to complete_bid_url and return if session[:pending_bid]
+    redirect_to dashboard_url
+  end
+
+  def destroy
+    session[:current_user_id] = nil
+    flash[:notice] = "Logged out.  Happy soloing."
+    redirect_to root_path
   end
 
   protected

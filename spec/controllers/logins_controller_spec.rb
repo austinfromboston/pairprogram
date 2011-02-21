@@ -76,7 +76,7 @@ describe LoginsController do
       context "when there is no pending bid" do
         it "redirects to the persons page" do
           make_request
-          response.should redirect_to(@person)
+          response.should redirect_to(dashboard_url)
         end
       end
     end

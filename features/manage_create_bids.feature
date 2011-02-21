@@ -67,3 +67,18 @@ Feature: Find a pair
     And I am on the dashboard page
     Then I should see "bar"
     Then I should see "Request Pair"
+
+  Scenario: Returning user
+    Given I am on the new search page
+    When I follow "Sign in"
+    Then I should be on the logins page
+
+    When I am the returning user veteran@example.com
+    And I prepare to auth via twitter
+    And I follow "Twitter"
+    Then I should be on the dashboard page
+    And I should see "Sign out"
+
+    When I follow "Sign out"
+    Then I should be on the root page
+    And I should see "Sign in"

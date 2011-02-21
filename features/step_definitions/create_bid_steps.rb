@@ -50,11 +50,15 @@ Then /\"([^\"]+)\" should receive an offer email from \"([^\"]+)\"/ do |bidder, 
 end
 
 When /I am logged in as ([@\.\w]+)/ do |email|
-  user = Person.find_or_create_by_email email
-  user.identities.find_or_create_by_service_and_identity_key 'twitter', '123545'
   steps  %Q[
+    When I am the returning user #{email}
     Then I prepare to auth via twitter
     And I am on the logins page
     And I follow "Twitter"
   ]
+end
+
+When /I am the returning user ([@\.\w]+)/ do |email|
+  user = Person.find_or_create_by_email email
+  user.identities.find_or_create_by_service_and_identity_key 'twitter', '123545'
 end

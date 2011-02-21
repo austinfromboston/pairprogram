@@ -14,4 +14,5 @@ Pairprogram::Application.routes.draw do
   resources :people, :only => [:show, :edit, :update]
   resource :dashboard, :only => :show
   match 'auth/:service/callback', :to => 'logins#callback', :as => 'auth_callback'
+  match 'logout', :to => 'logins#destroy'
 end
