@@ -21,6 +21,7 @@ class BidsController < ApplicationController
     @bid = Bid.new session[:pending_bid]
     @bid.bidder = current_user
     @bid.save
+    session.delete :pending_bid
     render :edit
   end
 
@@ -41,7 +42,7 @@ class BidsController < ApplicationController
   end
 
   def edit
-    @bid = Bid.find(params[:id])
+    @bid = current_user.bids.find(params[:id])
   end
 
   def update

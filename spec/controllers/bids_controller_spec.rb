@@ -72,6 +72,10 @@ describe BidsController do
       make_request
       response.should render_template(:edit)
     end
+    it "should drop the pending bid from the session" do
+      make_request
+      session[:pending_bid].should_not be
+    end
   end
 
   describe "#create" do

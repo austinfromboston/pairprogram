@@ -3,5 +3,4 @@ class DashboardsController < ApplicationController
   def show
     @person = current_user
   end
-
 end

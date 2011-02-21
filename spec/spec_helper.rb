@@ -40,7 +40,7 @@ RSpec.configure do |config|
           end
 
           it "should not redirect if user is logged in" do
-            @test_login_user = @current_user || Factory(:person)
+            @test_login_user = @current_user || (respond_to?(:current_user) && current_user) || Factory(:person)
             session[:current_user_id] = @test_login_user.id
             make_request
             response.should_not redirect_to(logins_path)

@@ -1,38 +1,62 @@
 require 'spec_helper'
 
 describe PeopleController do
-  before do
-    @person = Factory(:person)
-  end
-
-  describe "GET 'show'" do
-    it "should be successful" do
-      get 'show', :id => @person.to_param
-      response.should be_success
-    end
-  end
+  let(:current_user) { Factory(:person) }
+  let(:haxor) { Factory(:person) }
 
   describe "GET #edit" do
+    it_should_require_login
+    def make_request
+      get :edit, :id => current_user.to_param
+    end
     it "should be successful" do
-      get :edit, :id => @person.to_param
+      login_as current_user
+      make_request
       response.should be_success
+    end
+    context "when logged in as another user" do
+      it "should not allow access to edit personal data" do
+        login_as haxor
+        make_request
+        response.should redirect_to(dashboard_url)
+        flash[:error].should == "I can't show you that, sorry"
+      end
+
     end
   end
 
   describe "PUT #update" do
-    it "should change preferences" do
-      @person.allow_email.should be_true
-      put :update, :person => { :allow_email => "false" }, :id => @person.to_param
-      response.should redirect_to(person_path)
-      @person.reload.allow_email.should_not be_true
+    it_should_require_login
+    def make_request
+      put :update, :person => { :allow_email => "false" }, :id => current_user.to_param
     end
+    context "when logged in" do
+      before do
+        login_as current_user
+      end
+      it "should change preferences" do
+        current_user.allow_email.should be_true
+        make_request
+        response.should redirect_to(dashboard_url)
+        current_user.reload.allow_email.should_not be_true
+      end
 
-    it "should not allow changes of names or email addresses" do
-      original_name = @person.name
-      original_email = @person.email
-      put :update, :person => { :email => "vaz@example.com", :name => 'user_foo!' }, :id => @person.to_param
-      @person.name.should == original_name
-      @person.email.should == original_email
+      it "should not allow changes of names or email addresses" do
+        original_name = current_user.name
+        original_email = current_user.email
+        put :update, :person => { :email => "vaz@example.com", :name => 'user_foo!' }, :id => current_user.to_param
+        current_user.name.should == original_name
+        current_user.email.should == original_email
+      end
+
+      context "when logged in as another user" do
+        it "should not allow access to edit personal data" do
+          login_as haxor
+          make_request
+          response.should redirect_to(dashboard_url)
+          flash[:error].should == "I can't show you that, sorry"
+        end
+      end
     end
   end
 end
