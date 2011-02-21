@@ -1,11 +1,10 @@
 require 'spec_helper'
 
 describe BidsController do
-  before do
-    @current_user = Factory(:bidder)
-    @bid = Factory(:bid, :bidder => @current_user)
-    @bid_attributes = { 'zip' => '90009', 'bidder_attributes' => { 'email' => 'foo@example.com' }} 
-  end
+  let(:current_user) { Factory(:bidder) }
+  let(:bid) { Factory(:bid, :bidder => current_user) }
+  let(:bid_attributes) {{ 'zip' => '90009', 'bidder_attributes' => { 'email' => 'foo@example.com' }}}
+
   describe "#new" do
     it "should route" do
       {:get => 'bids/new'}.should route_to(:controller => 'bids', :action => 'new')
@@ -24,10 +23,10 @@ describe BidsController do
   describe "#edit" do
     it_should_require_login
     def make_request
-      get :edit, :id => @bid.to_param
+      get :edit, :id => bid.to_param
     end
     it "should render" do
-      login_as @current_user
+      login_as current_user
       make_request
       response.should be_success
       response.should render_template(:edit)
@@ -37,19 +36,19 @@ describe BidsController do
   describe "#update" do
     context "when the user is logged in" do
       before do
-        login_as @current_user
+        login_as current_user
       end
       context "when the data is valid" do
         it "should redirect to the show page" do
-          put :update, :id => @bid.to_param, :bid => { :skills => 'None' }
+          put :update, :id => bid.to_param, :bid => { :skills => 'None' }
           response.should redirect_to(dashboard_path)
-          @bid.reload.skills.should == "None"
+          bid.reload.skills.should == "None"
         end
       end
       context "when the data is not so good" do
         it "should re-display the edit page" do
           Factory(:bidder, :name => 'foo')
-          put :update, :id => @bid.to_param, :bid => { :skills => 'None', :bidder_attributes => { :name => "foo" }}
+          put :update, :id => bid.to_param, :bid => { :skills => 'None', :bidder_attributes => { :name => "foo" }}
           response.should render_template(:edit)
         end
       end
@@ -61,12 +60,12 @@ describe BidsController do
       get :complete
     end
     before do
-      login_as @current_user
-      session[:pending_bid] = @bid_attributes
+      login_as current_user
+      session[:pending_bid] = bid_attributes
     end
     it "should create a new bid record populated with values from the session" do
       make_request
-      assigns[:bid].attributes['zip'].should == @bid_attributes['zip']
+      assigns[:bid].attributes['zip'].should == bid_attributes['zip']
     end
     it "should display the edit bid page" do
       make_request
@@ -81,7 +80,7 @@ describe BidsController do
   describe "#create" do
     context "when a valid bidderis created" do
       def make_request
-        get :create, :bid => @bid_attributes
+        get :create, :bid => bid_attributes
       end
 
       context "and the bidder is not logged in" do
@@ -91,13 +90,13 @@ describe BidsController do
         end
         it "should save the in-progress bid data to the session" do
           make_request
-          session[:pending_bid].should == @bid_attributes
+          session[:pending_bid].should == bid_attributes
         end
       end
 
       context "and the is logged in" do
         before do
-          login_as @current_user
+          login_as current_user
         end
         it "should redirect to edit" do
           make_request
@@ -107,7 +106,7 @@ describe BidsController do
         it "should create a pending bid which expires in one day" do
           lambda { make_request }.should change(Bid, :count).by(1)
           Bid.last.expires_at.to_i.should >= ( 1.day.from_now - 10.seconds ).to_i
-          Bid.last.bidder.should  == @current_user
+          Bid.last.bidder.should  == current_user
         end
       end
     end
@@ -175,19 +174,20 @@ describe BidsController do
 
   describe "destroy" do
     def make_request
-      delete :destroy, :id => @bid.id
+      delete :destroy, :id => bid.id
     end
-
     context "login behavior" do
       it_should_require_login
     end
 
     context "when logged in" do
       before do
-        login_as @current_user
+        login_as current_user
       end
+
       it "should not allow users to destroy bids that dont belong to them" do
-        @bid = Factory(:bid)
+        bid.bidder = Factory(:bidder)
+        bid.save
         expect{
           expect{ make_request }.to raise_error(ActiveRecord::RecordNotFound)
         }.not_to change(Bid, :count)
@@ -195,7 +195,8 @@ describe BidsController do
 
       context "when the bid belongs to the current user" do
         it "destroys the bid and returns to the dashboard" do
-          expect{ make_request }.to change(@current_user.bids, :count)
+          current_user.bids.should include(bid)
+          expect{ make_request }.to change(current_user.bids, :count)
           response.should redirect_to(dashboard_url)
           flash[:notice].should == "Posting removed"
         end
