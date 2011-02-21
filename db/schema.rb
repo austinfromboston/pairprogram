@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110214080754) do
+ActiveRecord::Schema.define(:version => 20110221040758) do
 
   create_table "abuse_reports", :force => true do |t|
     t.string   "reason"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20110214080754) do
     t.text     "availability"
     t.text     "skills"
     t.text     "project_description"
+    t.boolean  "disabled"
   end
 
   create_table "identities", :force => true do |t|
@@ -55,6 +56,8 @@ ActiveRecord::Schema.define(:version => 20110214080754) do
     t.datetime "updated_at"
     t.string   "name"
     t.boolean  "allow_email"
+    t.boolean  "superuser"
+    t.boolean  "disabled"
   end
 
 end

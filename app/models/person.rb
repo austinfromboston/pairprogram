@@ -27,4 +27,9 @@ class Person < ActiveRecord::Base
   def update_allowed_attributes(values)
     update_attributes values.delete_if { |key, value| !['allow_email'].include?(key) }
   end
+
+  def disable!
+    self.update_attribute :disabled, true
+    bids.each { |b| b.update_attribute :disabled, true }
+  end
 end

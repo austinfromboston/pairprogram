@@ -82,3 +82,15 @@ Feature: Find a pair
     When I follow "Sign out"
     Then I should be on the root page
     And I should see "Sign in"
+
+  Scenario: Returning user with disabled account
+    Given I am on the new search page
+    When I follow "Sign in"
+    Then I should be on the logins page
+
+    When I am the disabled user spammer@example.com
+    And I prepare to auth via twitter
+    And I follow "Twitter"
+    Then I should be on the root page
+    And I should see "Your account has been disabled. Please post no further messages here."
+    And I should see "Sign in"

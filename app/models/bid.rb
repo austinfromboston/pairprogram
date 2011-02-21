@@ -10,7 +10,9 @@ class Bid < ActiveRecord::Base
   before_validation :set_default_expiration, :on => :create
   has_many :abuse_reports
   geocoded_by :zip
-  scope :open, where("expires_at > ?", Time.now)
+  scope :open, where("bids.expires_at > ?", Time.now)
+  scope :enabled, where("bids.disabled is ? or bids.disabled = ?", nil, false)
+  scope :visible, open.enabled
 
   def set_default_expiration
     self.expires_at ||= 1.day.from_now

@@ -6,7 +6,7 @@ Feature: Review bids
     Given these bids
       |email                  |zip      |
       |bar@example.com        |11111    |
-      |foo@example.com  |90009    |
+      |foo@example.com        |90009    |
     When I am on the new search page
     And I fill in "Zip Code" with "90009"
     And I press "Find"

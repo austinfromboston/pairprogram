@@ -3,7 +3,7 @@ class Offer < ActiveRecord::Base
   belongs_to :bid
   has_one :recipient, :through => :bid, :source => :bidder
   accepts_nested_attributes_for :sender
-  scope :open, includes(:bid).where('bids.expires_at > ?', Time.now)
+  scope :visible, includes(:bid) & Bid.visible
 
   after_create :send_notification
   def send_notification

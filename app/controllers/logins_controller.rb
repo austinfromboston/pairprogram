@@ -7,6 +7,7 @@ class LoginsController < ApplicationController
   def callback
     auth_info = request.env['omniauth.auth']
     user = Person.identified_by(auth_info['provider'], auth_info['uid']).first || create_person(auth_info)
+    return kick_them_out if user.disabled?
 
     session[:current_user_id] = user.id
     redirect_to complete_bid_url and return if session[:pending_bid]
@@ -26,5 +27,10 @@ class LoginsController < ApplicationController
     person.identities.build :service => auth_info['provider'], :identity_key => auth_info['uid'], :info => auth_info['user_info']
     person.save!
     person
+  end
+
+  def kick_them_out
+    flash[:error] = "Your account has been disabled. Please post no further messages here."
+    redirect_to root_path
   end
 end

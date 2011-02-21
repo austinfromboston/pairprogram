@@ -27,11 +27,11 @@
             = mail_to offer.sender.email, offer.sender.email, :encode => :javascript
 
 %h2 Open Offers
-- if @person.offers.open.empty?
+- if @person.offers.visible.empty?
   %p 
     You have no open offers right now.
     = link_to "Review available pairs!", root_path
 %ul
-  - @person.offers.open.each do |offer|
+  - @person.offers.visible.each do |offer|
     .dashboard-offer{:'data-name' => "offer-to-pair-with-#{offer.recipient.name}"}
       = render offer.bid

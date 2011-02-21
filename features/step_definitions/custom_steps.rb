@@ -62,3 +62,28 @@ When /I am the returning user ([@\.\w]+)/ do |email|
   user = Person.find_or_create_by_email email
   user.identities.find_or_create_by_service_and_identity_key 'twitter', '123545'
 end
+
+When /I am the disabled user ([@\.\w]+)/ do |email|
+  user = Person.find_or_create_by_email email
+  user.identities.find_or_create_by_service_and_identity_key 'twitter', '123545'
+  user.disable!
+end
+
+When /I am the admin/ do
+  user = Person.find_or_create_by_email "admin@example.com"
+  user.update_attribute :superuser, true
+  steps  %Q[
+    When I am the returning user admin@example.com
+    Then I prepare to auth via twitter
+    And I am on the logins page
+    And I follow "Twitter"
+  ]
+end
+
+Given /^these flagged bids$/ do |bid_data|
+  bid_data.hashes.each do |row|
+    person = Person.find_or_create_by_email row['email']
+    bid = person.bids.create! :zip => row['zip']
+    bid.abuse_reports.create! :reason => "Spam"
+  end
+end

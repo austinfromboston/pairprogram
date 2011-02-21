@@ -25,6 +25,22 @@ describe PeopleController do
     end
   end
 
+  describe "PUT #disable" do
+    let(:person) { Factory :person }
+    let(:bid) { Factory :bid, :bidder => person }
+
+    def make_request
+      put :disable, :id => person.to_param
+    end
+    it "should disable the targeted user" do
+      login_as Factory(:superuser)
+      make_request
+      person.reload.should be_disabled
+      response.should redirect_to(flagged_bids_path)
+      flash[:notice].should == "That's the last we'll hear of #{person.name}"
+    end
+  end
+
   describe "PUT #update" do
     it_should_require_login
     def make_request
