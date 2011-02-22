@@ -1,4 +1,9 @@
 %h1 Flagged Bids
 - @bids.each do |bid|
   = render bid
+  %ul
+    - bid.abuse_reports.each do |report|
+      %li
+        %h3= report.reason
+        %p= report.description
   = button_to "Disable User #{bid.bidder.name}", disable_person_path(bid.bidder), :method => :put
