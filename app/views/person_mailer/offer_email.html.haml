@@ -21,13 +21,15 @@
     %li If possible, have 2 mice and 2 keyboards. Use an editor that both parties can be comfortable and productive with.
     %li Try not to spend too much time "driving", that is, operating the mouse and keyboard.  
     %li If you notice your partner driving too much, simply suggest that maybe you should drive for a bit.
-    %li 
+    %li
       If your partner is not engaged with the problem, slow down.  Ask questions out loud, even if you have a solution in mind.  
       This may slow progress, but an engaged pair is better able to catch potential bugs, and to offer alternate solutions.
-    %li 
+    %li
       If you have a disagreement, keep talking.  Give your pair's ideas the benefit of the doubt.  
       Try to come to consensus about how to move forward before starting to write code.
 
 %p.fine_print
   This email was sent to you because we believe you are interested in pairing opportunities.
-  To stop receiving these messages go to <%= edit_person_url(@recipient) %> to change your preferences.
+  To stop receiving these messages go to
+  = link_to edit_person_url(@recipient), edit_person_url(@recipient)
+  to change your preferences.

@@ -4,6 +4,22 @@ describe OffersController do
   describe "post #create" do
     let(:bid) { Factory(:bid) }
 
+    context "when a referer is available" do
+      it "should redirect back to the prior page" do
+        original_url = 'http://test.host/foo'
+        request.env['HTTP_REFERER'] = original_url
+        post :create, :offer => { :sender_attributes => { :email => 'foo@example.com' }}, :bid_id => bid.to_param
+        flash[:notice].should == "Pairing request sent"
+        response.should redirect_to(original_url)
+      end
+    end
+
+    it "should redirect to the new search page" do
+      post :create, :offer => { :sender_attributes => { :email => 'foo@example.com' }}, :bid_id => bid.to_param
+      flash[:notice].should == "Pairing request sent"
+      response.should redirect_to(new_search_url)
+    end
+
     it "should send email after the offer is created" do
       expect {
         post :create, :offer => { :sender_attributes => { :email => 'foo@example.com' }}, :bid_id => bid.to_param

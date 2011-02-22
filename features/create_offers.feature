@@ -20,5 +20,4 @@ Feature: Offer to pair
 
     When I am logged in as noob@example.com
     And I am on the dashboard page
-    Then show me the page
     Then I should see "pairprogram" within "[data-name='offer-to-pair-with-pairprogram']"

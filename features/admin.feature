@@ -18,7 +18,6 @@ Feature: Admin
 
     When I press "Disable User foo"
     Then I should be on the flagged bids page
-    Then show me the page
     And I should see "That's the last we'll hear of foo"
 
     When I am on the new search page
