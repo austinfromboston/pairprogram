@@ -4,7 +4,7 @@ class AbuseReportsController < ApplicationController
     @abuse_report = @bid.abuse_reports.build params[:abuse_report]
     if @abuse_report.save
       flash[:notice] = "Thank you, I'll review your report shortly"
-      redirect_to :back
+      redirect_to session[:last_search] || :back
     else
       render :new
     end

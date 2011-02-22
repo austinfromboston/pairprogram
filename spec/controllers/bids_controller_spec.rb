@@ -149,6 +149,11 @@ describe BidsController do
         make_request
         assigns[:bids].should_not include(@the_old_bid)
       end
+
+      it "should record the search url in the session" do
+        make_request
+        session[:last_search].should == "http://test.host/bids?postal_code=11111"
+      end
     end
 
     context "when no results are found" do

@@ -7,7 +7,7 @@ class OffersController < ApplicationController
     @offer = @bid.offers.build params[:offer]
     if @offer.save
       flash[:notice] = "Pairing request sent"
-      redirect_to :back
+      redirect_to session[:last_search] || :back
     else
       render 'new'
     end
