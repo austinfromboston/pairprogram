@@ -43,7 +43,7 @@ describe PeopleController do
       login_as Factory(:superuser)
       make_request
       person.reload.should be_disabled
-      response.should redirect_to(flagged_bids_path)
+      response.should redirect_to(abuse_reports_path)
       flash[:notice].should == "That's the last we'll hear of #{person.name}"
     end
   end

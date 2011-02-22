@@ -3,9 +3,10 @@ Pairprogram::Application.routes.draw do
   root :to => "searches#new"
 
   match 'bids/complete', :to => 'bids#complete', :via => :get, :as => 'complete_bid'
+  resources :abuse_reports, :only => :index
   resources :bids do
     resources :offers, :only => [:new, :create, :index]
-    resources :abuse_reports, :only => [:new, :create, :index]
+    resources :abuse_reports, :only => [:new, :create]
   end
 
   resources :offers, :only => :show
@@ -19,5 +20,4 @@ Pairprogram::Application.routes.draw do
   match 'logout', :to => 'logins#destroy'
 
   resources :resources, :only => :index
-  resources :flagged_bids, :only => :index
 end

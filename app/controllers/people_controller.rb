@@ -19,7 +19,7 @@ class PeopleController < ApplicationController
     @person = Person.find params[:id]
     @person.disable!
     flash[:notice] = "That's the last we'll hear of #{@person.name}"
-    redirect_to flagged_bids_path
+    redirect_to abuse_reports_path
   end
 
   private
