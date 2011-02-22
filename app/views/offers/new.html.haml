@@ -1,4 +1,5 @@
 = form_for :offer, :url => bid_offers_path(@bid), :html => { :class => 'madlibs' } do |offer_form|
+  = render 'shared/errors', :item => @offer
   = offer_form.fields_for :sender_attributes do |sender_fields|
     .form-field
       Please email me at

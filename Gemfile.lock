@@ -109,7 +109,7 @@ GEM
       json (~> 1.4.6)
     gravtastic (3.1.0)
     haml (3.0.25)
-    hoptoad_notifier (2.4.5)
+    hoptoad_notifier (2.4.6)
       activesupport
       builder
     i18n (0.5.0)
