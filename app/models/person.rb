@@ -2,9 +2,10 @@ class Person < ActiveRecord::Base
   validates_uniqueness_of :email, :name, :allow_blank => true
   validates_presence_of :name
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :allow_blank => true
-  has_many :bids, :foreign_key => :bidder_id
-  has_many :offers, :foreign_key => :sender_id
-  has_many :identities
+  has_many :bids, :foreign_key => :bidder_id, :dependent => :destroy
+  has_many :offers, :foreign_key => :sender_id, :dependent => :destroy
+  has_many :offers_received, :through => :bids, :source => :offers, :dependent => :destroy
+  has_many :identities, :dependent => :destroy
   scope :identified_by, lambda { |service, key| 
     includes(:identities).where( :identities => {:service => service, :identity_key => key } ) 
   }

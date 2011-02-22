@@ -1,21 +1,20 @@
-%li{:'data-name' => "pair-with-#{bid.bidder.name}"}
-  .image-block
-    = image_tag bid.bidder.gravatar_url(:default => 'identicon', :size => 40), :class => 'person-avatar'
-    .description
-      .name
-        = bid.bidder.name
-        = link_to "Report Abuse", new_bid_abuse_report_path(bid), :class => 'report-abuse'
-      = link_to "Request Pair", new_bid_offer_path(bid)
-      - if bid.project_description.present?
-        .project_description.desc
-          Project:
-          = bid.project_description
-      - if bid.skills.present?
-        .skills.desc
-          Skills:
-          = bid.skills
-      - if bid.availability.present?
-        .availability.desc
-          Available:
-          = bid.availability
+.image-block
+  = image_tag bid.bidder.gravatar_url(:default => 'identicon', :size => 40), :class => 'person-avatar'
+  .description
+    .name
+      = bid.bidder.name
+      = link_to "Report Abuse", new_bid_abuse_report_path(bid), :class => 'report-abuse'
+    = link_to "Request Pair", new_bid_offer_path(bid), :class => 'pair-request'
+    - if bid.project_description.present?
+      .project_description.desc
+        Project:
+        = bid.project_description
+    - if bid.skills.present?
+      .skills.desc
+        Skills:
+        = bid.skills
+    - if bid.availability.present?
+      .availability.desc
+        Available:
+        = bid.availability
 

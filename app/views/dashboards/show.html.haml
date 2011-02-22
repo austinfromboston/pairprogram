@@ -10,23 +10,32 @@
   %p 
     You have no open postings right now.
     = link_to "Make one!", new_bid_path
-%ul
+%ul.bids-listing.dashboard
   - @person.bids.open.each do |bid|
-    .dashboard-bid
-      = render bid
-      = link_to "Edit", edit_bid_path(bid)
-      = link_to "Remove", edit_bid_path(bid), :class => 'delete-link'
-      .delete-block.hidden
-        = button_to "Remove", bid_path(bid), :method => :delete
+    %li.dashboard-bid
+      .dashboard-bid-status
+        .offer-count
+          = bid.offers.count
+        .controls
+          = link_to "Edit", edit_bid_path(bid)
+          = link_to "Remove", edit_bid_path(bid), :class => 'delete-link'
+          .delete-block.hidden
+            = button_to "Remove", bid_path(bid), :method => :delete
+      .dashboard-bid-data
+        .offer-block
+          - if bid.offers.empty?
+            %p This bid is public and awaiting offers.
+          - else
+            %h3 Offers Received
+            %ul
+              - bid.offers.each do |offer|
+                %li
+                  = offer.sender.name
+                  = mail_to offer.sender.email, offer.sender.email, :encode => :javascript
 
-      %h3 Offers Received
-      %ul
-        - bid.offers.each do |offer|
-          %li
-            = offer.sender.name
-            = mail_to offer.sender.email, offer.sender.email, :encode => :javascript
+        = render bid, :locals => { :display_only => true }
 
-%h2 Open Offers
+%h2 Offers You've Made
 - if @person.offers.visible.empty?
   %p 
     You have no open offers right now.

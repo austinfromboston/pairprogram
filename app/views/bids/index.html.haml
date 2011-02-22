@@ -1,6 +1,6 @@
 %h2 Available Pairs
 %ul.bids-listing
-  = render @bids
+  = render :partial => "bid_listing", :collection => @bids, :as => :bid
 
 %h2 Want pairs to contact you?
 %p
