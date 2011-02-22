@@ -20,22 +20,36 @@
 
         #main.column
           %header
-            %h1 
+            - if current_user
+              %nav.user-menu
+                %ul
+                  - if current_user.superuser?
+                    %li
+                      = link_to "Review Abuse Reports", flagged_bids_path
+                  %li
+                    = link_to "Dashboard", dashboard_path
+                  %li
+                    = link_to "Sign out", logout_path, :method => :delete
+
+            %h1
               = link_to "Pair Program", root_path
             #description Two programmers, one computer, creating better solutions through dialog.
+
+
             %nav
               %ul
+                %li
+                  = link_to "Find a Pair", new_search_path
                 %li
                   = link_to "Why Pair?", resources_path(:anchor => 'why')
                 %li
                   = link_to "How to Pair", resources_path(:anchor => 'howto')
                 %li
                   = link_to "About PairProgram", resources_path(:anchor => 'whatsup')
-                %li
-                  - if current_user
-                    = link_to "Sign out", logout_path, :method => :delete
-                  - else
+                - unless current_user
+                  %li
                     = link_to "Sign in", logins_path
+
 
             - flash.each do |type, message|
               %div{ :class => "flash-#{type}" }

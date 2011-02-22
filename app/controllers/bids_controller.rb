@@ -4,12 +4,12 @@ class BidsController < ApplicationController
 
   def new
     @bid = Bid.new :zip => params[:postal_code]
-    @bid.build_bidder
+    @bid.bidder = current_user || @bid.build_bidder
   end
 
   def create
-    @bid = Bid.new params[:bid]
-    @bid.bidder = current_user
+    @bid = current_user.bids.build
+    @bid.attributes = params[:bid]
     if @bid.save
       redirect_to(edit_bid_path(@bid))
     else

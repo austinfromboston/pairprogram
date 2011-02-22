@@ -853,3 +853,9 @@ h2 {
 .hidden {
   display: none;
 }
+
+/* line 104, ../../../app/stylesheets/pretty.scss */
+nav.user-menu {
+  float: right;
+  font-size: 0.8em;
+}

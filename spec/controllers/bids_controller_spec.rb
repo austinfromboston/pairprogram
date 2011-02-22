@@ -78,7 +78,7 @@ describe BidsController do
   end
 
   describe "#create" do
-    context "when a valid bidderis created" do
+    context "when a valid bidder is created" do
       def make_request
         get :create, :bid => bid_attributes
       end
@@ -94,7 +94,8 @@ describe BidsController do
         end
       end
 
-      context "and the is logged in" do
+      context "and the bidder is logged in" do
+        let(:bid_attributes) {{ 'zip' => '90009', 'bidder_attributes' => { 'id' => current_user.to_param, 'email' => 'foo@example.com' }}}
         before do
           login_as current_user
         end
@@ -107,6 +108,12 @@ describe BidsController do
           lambda { make_request }.should change(Bid, :count).by(1)
           Bid.last.expires_at.to_i.should >= ( 1.day.from_now - 10.seconds ).to_i
           Bid.last.bidder.should  == current_user
+        end
+
+        it "should update the email of the bidder" do
+          current_user.email.should_not == 'foo@example.com'
+          make_request
+          current_user.reload.email.should == 'foo@example.com'
         end
       end
     end
