@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   def require_login
     return if current_user
-    session[:auth_target] = request.path
+    session[:login_target] = request.url
     redirect_to logins_path
   end
 

@@ -14,6 +14,13 @@ describe PeopleController do
       make_request
       response.should be_success
     end
+    context "when not logged in" do
+      it "should store the login_target in the session before redirecting" do
+        make_request
+        session[:login_target].should == edit_person_url(current_user)
+        response.should redirect_to(logins_path)
+      end
+    end
     context "when logged in as another user" do
       it "should not allow access to edit personal data" do
         login_as haxor

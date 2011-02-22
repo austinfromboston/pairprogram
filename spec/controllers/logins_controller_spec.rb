@@ -29,7 +29,6 @@ describe LoginsController do
   describe "#callback" do
     before do
       @bid = Factory(:bid)
-      session[:auth_target] = bid_path(@bid)
       @person = Factory(:person)
       request.env['omniauth.auth'] = AUTH_HASH
     end
@@ -74,6 +73,14 @@ describe LoginsController do
       end
 
       context "when there is no pending bid" do
+        context "when there is a login target url" do
+          it "redirects to the login_target and removes the login target" do
+            session[:login_target] = edit_person_url(@person)
+            make_request
+            response.should redirect_to(edit_person_url(@person))
+            session[:login_target].should_not be
+          end
+        end
         it "redirects to the persons page" do
           make_request
           response.should redirect_to(dashboard_url)

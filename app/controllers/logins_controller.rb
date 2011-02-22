@@ -11,7 +11,7 @@ class LoginsController < ApplicationController
 
     session[:current_user_id] = user.id
     redirect_to complete_bid_url and return if session[:pending_bid]
-    redirect_to dashboard_url
+    redirect_to session.delete(:login_target) || dashboard_url
   end
 
   def destroy
