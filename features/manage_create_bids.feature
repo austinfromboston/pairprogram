@@ -43,7 +43,7 @@ Feature: Find a pair
     When I fill in "Email" with "pairprogram@gmail.com"
     And I press "Request Pair"
 
-    Then I should see "Pairing Request Sent"
+    Then I should see "Pairing request sent"
 
   Scenario: Add my bid when matches exist
     Given these bids

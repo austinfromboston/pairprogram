@@ -24,7 +24,6 @@ group :test do
   gem 'guard'
   gem 'guard-spork'
   gem 'guard-rspec'
-  gem 'guard-cucumber'
   gem 'rb-fsevent'
   gem 'growl'
 end
