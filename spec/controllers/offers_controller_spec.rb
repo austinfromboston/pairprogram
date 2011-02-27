@@ -29,6 +29,18 @@ describe OffersController do
       offer_email.encoded.should =~ /foo@example.com/
     end
 
+    context "when the current_user is logged in" do
+      before do
+        @current_user = Factory(:person)
+        login_as @current_user
+      end
+      it "should create an offer record for the current user" do
+        expect {
+          post :create, :bid_id => bid.to_param
+        }.to change(@current_user.offers, :count)
+      end
+    end
+
     context "when the bidder does not want email" do
       it "should send nothing" do
         bid.bidder.update_attribute :allow_email, false

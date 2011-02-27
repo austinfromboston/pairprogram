@@ -62,6 +62,7 @@ Before do
 end
 Before "@selenium" do
   Capybara.current_driver = :selenium
+  WebMock.disable_net_connect!(:allow_localhost => true)
 end
 After "@selenium" do
   Capybara.use_default_driver

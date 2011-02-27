@@ -9,4 +9,12 @@ $(function() {
   $('.pair-request, .report-abuse', '.bids-listing.dashboard').click(function() {
     return false;
   });
+  $('a.confirm').click( function(ev) {
+    var $confirm_target = $(this).nextAll('.confirm:first');
+    if($confirm_target.length == 0) {
+      $confirm_target = $(this).parent().nextAll('.confirm:first');
+    }
+    $confirm_target.toggle();
+    return false;
+  });
 });

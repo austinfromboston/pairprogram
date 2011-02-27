@@ -87,3 +87,7 @@ Given /^these flagged bids$/ do |bid_data|
     bid.abuse_reports.create! :reason => "Spam"
   end
 end
+
+When /I should be editing the bid/ do 
+  current_url.should =~ /\/bids\/\d+\/edit$/
+end

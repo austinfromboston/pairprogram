@@ -83,6 +83,23 @@ Feature: Find a pair
     Then I should be on the root page
     And I should see "Sign in"
 
+  @selenium
+  Scenario: Returning user creating bid
+    Given these bids
+      |email            |zip      |
+      |bar@example.com  |11111    |
+      |foo@example.com  |90009    |
+    When I am logged in as veteran@example.com
+    And I am on the new search page
+    And I fill in "Zip Code" with "90009"
+    And I press "Find"
+
+    When I follow "add me to this list"
+    Then I should see "create a new posting"
+
+    When I press "Create Posting"
+    Then I should be editing the bid
+
   Scenario: Returning user with disabled account
     Given I am on the new search page
     When I follow "Sign in"

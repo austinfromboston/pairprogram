@@ -5,4 +5,11 @@
 %h2 Want pairs to contact you?
 %p
   I'm interested,
-  = link_to "add me to this list", new_bid_path(:postal_code=> params[:postal_code])
+  - if current_user
+    = link_to "add me to this list", new_bid_path(:postal_code=> params[:postal_code]), :class => 'confirm'
+    = form_for Bid.new(:zip => params[:postal_code]), :html => { :class => 'hidden confirm' } do |bid_form|
+      %p You are about to create a new posting to pair in
+      = bid_form.text_field :zip
+      = bid_form.submit "Create Posting"
+  - else
+    = link_to "add me to this list", new_bid_path(:postal_code=> params[:postal_code])

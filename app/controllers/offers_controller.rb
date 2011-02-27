@@ -5,6 +5,7 @@ class OffersController < ApplicationController
   end
   def create
     @offer = @bid.offers.build params[:offer]
+    @offer.sender = current_user if current_user
     if @offer.save
       flash[:notice] = "Pairing request sent"
       redirect_to session[:last_search] || :back

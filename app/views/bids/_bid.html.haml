@@ -4,7 +4,13 @@
     .name
       = bid.bidder.name
       = link_to "Report Abuse", new_bid_abuse_report_path(bid), :class => 'report-abuse'
-    = link_to "Request Pair", new_bid_offer_path(bid), :class => 'pair-request'
+    - if current_user
+      = link_to "Request Pair", new_bid_offer_path(bid), :class => 'pair-request confirm'
+      = form_for :offer, :url => bid_offers_path(bid), :html => { :class => 'hidden confirm' } do |offer_form|
+        %p Yes, give this person my email so we can set up a pairing time.
+        = offer_form.submit "Request Pair"
+    - else
+      = link_to "Request Pair", new_bid_offer_path(bid), :class => 'pair-request'
     - if bid.project_description.present?
       .project_description.desc
         Project:
