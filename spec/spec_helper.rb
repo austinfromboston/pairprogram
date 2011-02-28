@@ -37,6 +37,19 @@ Spork.prefork do
       def login_as(user)
         session[:current_user_id] = user.id
       end
+      def make_fixture(fixture_name)
+        raise "a block containing a mock request is needed to make a fixture" unless block_given?
+        yield
+        if response.body.blank?
+          raise "Body is blank for #{fixture_name}. Perhaps you should render_views?"
+        end
+        doc = Nokogiri.parse(response.body)
+        doc.search('script, [rel=stylesheet]').each { |node| node.remove }
+        Dir.mkdir('tmp/jasmine-dom-fixtures') unless File.exist?('tmp/jasmine-dom-fixtures')
+        File.open("tmp/jasmine-dom-fixtures/#{fixture_name}.html", 'w') do |f|
+          f.print doc.to_html
+        end
+      end
     }, :type => :controller)
     config.extend(Module.new {
           def it_should_require_login(options={})

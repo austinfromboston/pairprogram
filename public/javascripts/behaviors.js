@@ -9,6 +9,8 @@ $(function() {
   $('.pair-request, .report-abuse', '.bids-listing.dashboard').click(function() {
     return false;
   });
+
+  // confirm links display the closest confirm block
   $('a.confirm').click( function(ev) {
     var $confirm_target = $(this).nextAll('.confirm:first');
     if($confirm_target.length == 0) {
@@ -17,4 +19,6 @@ $(function() {
     $confirm_target.toggle();
     return false;
   });
+  Geolocate.init();
+
 });

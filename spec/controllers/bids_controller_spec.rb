@@ -9,8 +9,12 @@ describe BidsController do
     it "should route" do
       {:get => 'bids/new'}.should route_to(:controller => 'bids', :action => 'new')
     end
+    render_views
     it "should render the bid form" do
-      get :new
+      make_fixture('new_search') do
+        get :new
+      end
+      puts response.body
       response.should be_success
       response.should render_template(:new)
     end
@@ -126,12 +130,12 @@ describe BidsController do
 
     context "when matching bids are found" do
       before do
-        @the_bid = Factory(:bid, :zip => 11111)
+        @the_bid = Factory(:bid, :zip => '01001', :latitude => 42.0899887, :longitude => -72.61588)
         @the_other_bid = Factory(:bid, :zip => 90009) 
-        @the_old_bid = Factory(:bid, :zip => 11111, :expires_at => 1.day.ago)
+        @the_old_bid = Factory(:bid, :zip => '01001', :expires_at => 1.day.ago)
       end
-      def make_request
-        get :index, :postal_code => '11111'
+      def make_request(params={})
+        get :index, { :postal_code => '01001' }.merge(params)
       end
       it "should display the page" do
         make_request
@@ -152,7 +156,15 @@ describe BidsController do
 
       it "should record the search url in the session" do
         make_request
-        session[:last_search].should == "http://test.host/bids?postal_code=11111"
+        session[:last_search].should == "http://test.host/bids?postal_code=01001"
+      end
+
+      context "when searching by geolocation" do
+        it "should find nearby bids" do
+          make_request :postal_code => nil, :latitude => '42.0898', :longitude=> '-72.6157'
+          assigns[:bids].should include(@the_bid)
+          assigns[:bids].should_not include(@the_other_bid)
+        end
       end
     end
 

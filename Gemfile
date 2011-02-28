@@ -26,4 +26,5 @@ group :test do
   gem 'guard-rspec'
   gem 'rb-fsevent'
   gem 'growl'
+  gem 'jasmine'
 end

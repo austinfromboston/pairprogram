@@ -13,12 +13,12 @@ Factory.define :superuser, :class => 'Person' do |p|
 end
 Factory.define :bid do |b|
   b.association(:bidder)
-  b.zip '11111'
+  b.zip '01001'
 end
 Factory.define :flagged_bid, :class => 'Bid' do |b|
   b.association(:bidder)
   b.after_create { |b| Factory(:abuse_report, :bid => b) }
-  b.zip '11111'
+  b.zip '01001'
 end
 Factory.define :abuse_report do |r|
   r.association(:bid)

@@ -91,3 +91,8 @@ end
 When /I should be editing the bid/ do 
   current_url.should =~ /\/bids\/\d+\/edit$/
 end
+
+When /I am geolocated in Los Angeles/ do
+  fill_in "latitude", :with => "33.9454917"
+  fill_in "longitude", :with => "-118.3844757"
+end

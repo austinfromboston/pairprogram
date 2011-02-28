@@ -4,6 +4,9 @@
     = label_tag :postal_code, 'Enter Your Zip Code'
     .fields-block
       = text_field_tag :postal_code, nil, :size => 6, :placeholder => '00000', :autofocus => true
+      .hidden
+        = text_field_tag :latitude
+        = text_field_tag :longitude
     = submit_tag "Find a Pair"
   = link_to "wait, what?", resources_path(:anchor => 'whatsup')
   

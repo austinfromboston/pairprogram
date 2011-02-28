@@ -111,3 +111,15 @@ Feature: Find a pair
     Then I should be on the root page
     And I should see "Your account has been disabled. Please post no further messages here."
     And I should see "Sign in"
+
+  @wip
+  Scenario: search bids by geolocation
+    Given these bids
+      |email            |zip      |
+      |bar@example.com  |11111    |
+      |foo@example.com  |90009    |
+    When I am on the new search page
+    And I am geolocated in Los Angeles
+    And I press "Find"
+
+    Then I should see "foo"

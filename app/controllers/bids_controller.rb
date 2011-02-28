@@ -30,11 +30,18 @@ class BidsController < ApplicationController
   end
 
   def index
-    unless LocationValidator.accepts?(params[:postal_code])
-      flash[:notice] = 'This only works with US and Canadian postal codes.  Patches welcome!'
-      redirect_to new_search_path and return
+    if params[:postal_code]
+      unless LocationValidator.accepts?(params[:postal_code])
+        flash[:notice] = 'This only works with US and Canadian postal codes.  Patches welcome!'
+        redirect_to new_search_path and return
+      end
+      @bids = Bid.visible.where(:zip => params[:postal_code]) if params[:postal_code]
+    else
+      # @bids = Bid.visible.near([params[:longitude].to_f, params[:latitude].to_f], 25) if params[:latitude]
+      @bids = Bid.geocoded.near([params[:latitude].to_f, params[:longitude].to_f], 25) if params[:latitude]
+      puts @bids.inspect
     end
-    @bids = Bid.visible.where(:zip => params[:postal_code])
+
     if @bids.empty?
       flash[:notice] = "No pairs are available in your area right now. If you leave your email, we can notify you when someone in your area wants to pair. Your email will not be used for anything else."
       redirect_to new_bid_path(:postal_code => params[:postal_code])
