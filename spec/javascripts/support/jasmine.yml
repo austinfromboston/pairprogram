@@ -12,7 +12,6 @@
 #
 src_files:
   - public/javascripts/jquery.js
-  - public/javascripts/geolocate.js
   - public/javascripts/behaviors.js
   - public/javascripts/pages/new_search.js
   - public/javascripts/**/*.js

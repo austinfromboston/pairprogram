@@ -10,6 +10,7 @@ Pairprogram::Application.routes.draw do
   end
 
   resources :offers, :only => :show
+  resources :locations, :only => :index, :format => :json
   resources :people, :only => [:edit, :update] do
     member { put :disable }
   end

@@ -11,10 +11,9 @@ describe BidsController do
     end
     render_views
     it "should render the bid form" do
-      make_fixture('new_search') do
+      make_fixture('new_bid') do
         get :new
       end
-      puts response.body
       response.should be_success
       response.should render_template(:new)
     end

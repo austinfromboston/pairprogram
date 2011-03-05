@@ -37,9 +37,7 @@ class BidsController < ApplicationController
       end
       @bids = Bid.visible.where(:zip => params[:postal_code]) if params[:postal_code]
     else
-      # @bids = Bid.visible.near([params[:longitude].to_f, params[:latitude].to_f], 25) if params[:latitude]
-      @bids = Bid.geocoded.near([params[:latitude].to_f, params[:longitude].to_f], 25) if params[:latitude]
-      puts @bids.inspect
+      @bids = Bid.visible.near([params[:latitude].to_f, params[:longitude].to_f], 25) if params[:latitude]
     end
 
     if @bids.empty?

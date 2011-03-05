@@ -1,9 +1,15 @@
 #start-block
   %h1 Looking for a Pair?
   = form_tag bids_path, :method => :get do 
-    = label_tag :postal_code, 'Enter Your Zip Code'
-    .fields-block
-      = text_field_tag :postal_code, nil, :size => 6, :placeholder => '00000', :autofocus => true
+    #manual-search.search-block
+      = label_tag :postal_code, 'Enter Your Zip Code'
+      .fields-block
+        = text_field_tag :postal_code, nil, :size => 6, :placeholder => '00000', :autofocus => true
+        = link_to "use my current location", "#", :class => 'show-geolocated-search hidden'
+    #geolocated-search.search-block.hidden
+      Find Pairs near
+      %span.geo-description
+      = link_to "I'd like to choose another location", "#", :class => 'show-manual-search'
       .hidden
         = text_field_tag :latitude
         = text_field_tag :longitude

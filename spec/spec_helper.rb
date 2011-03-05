@@ -45,6 +45,7 @@ Spork.prefork do
         end
         doc = Nokogiri.parse(response.body)
         doc.search('script, [rel=stylesheet]').each { |node| node.remove }
+        doc.search('img').each { |node| node.remove_attribute('src') }
         Dir.mkdir('tmp/jasmine-dom-fixtures') unless File.exist?('tmp/jasmine-dom-fixtures')
         File.open("tmp/jasmine-dom-fixtures/#{fixture_name}.html", 'w') do |f|
           f.print doc.to_html
