@@ -3,7 +3,7 @@ class BidsController < ApplicationController
   before_filter :require_login, :only => [ :create, :edit, :update, :complete, :destroy ]
 
   def new
-    @bid = Bid.new :zip => params[:postal_code]
+    @bid = Bid.new :zip => params[:postal_code], :latitude => params[:latitude], :longitude => params[:longitude]
     @bid.bidder = current_user || @bid.build_bidder
   end
 
@@ -35,9 +35,9 @@ class BidsController < ApplicationController
         flash[:notice] = 'This only works with US and Canadian postal codes.  Patches welcome!'
         redirect_to new_search_path and return
       end
-      @bids = Bid.visible.where(:zip => params[:postal_code]) if params[:postal_code]
-    else
-      @bids = Bid.visible.near([params[:latitude].to_f, params[:longitude].to_f], 25) if params[:latitude]
+      @bids = Bid.visible.where(:zip => params[:postal_code])
+    elsif params[:latitude]
+      @bids = Bid.visible.near([params[:latitude].to_f, params[:longitude].to_f], 25).all
     end
 
     if @bids.empty?

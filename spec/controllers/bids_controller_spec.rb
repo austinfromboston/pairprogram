@@ -21,6 +21,11 @@ describe BidsController do
       get :new, :postal_code => '90009'
       assigns[:bid].zip.should == "90009"
     end
+    it "should spike the bid with the lat/lon from the params" do
+      get :new, :latitude => '40', :longitude => '-120'
+      assigns[:bid].latitude.should == 40
+      assigns[:bid].longitude.should == -120
+    end
   end
 
   describe "#edit" do
