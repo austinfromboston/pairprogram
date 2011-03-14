@@ -1,5 +1,4 @@
-var pg = pg || {};
-pg.new_search = (function() {
+pg.new_searches = (function() {
   var page = {
     ready: function() {
       if(!!navigator.geolocation) {
@@ -11,8 +10,8 @@ pg.new_search = (function() {
     },
     update_location: function(position) {
       page.show_geo_search();
-      $('input[name=latitude]').val(position.coords.latitude);
-      $('input[name=longitude]').val(position.coords.longitude);
+      $('#search_latitude').val(position.coords.latitude);
+      $('#search_longitude').val(position.coords.longitude);
       $.getJSON("/locations.json", position.coords, page.show_location);
     },
     show_location: function(data) {

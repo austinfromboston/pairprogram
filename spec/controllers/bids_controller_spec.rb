@@ -18,11 +18,11 @@ describe BidsController do
       response.should render_template(:new)
     end
     it "should spike the bid with the zip from the params" do
-      get :new, :postal_code => '90009'
+      get :new, :bid => {:postal_code => '90009'}
       assigns[:bid].zip.should == "90009"
     end
     it "should spike the bid with the lat/lon from the params" do
-      get :new, :latitude => '40', :longitude => '-120'
+      get :new, :bid => {:latitude => '40', :longitude => '-120'}
       assigns[:bid].latitude.should == 40
       assigns[:bid].longitude.should == -120
     end
@@ -138,8 +138,8 @@ describe BidsController do
         @the_other_bid = Factory(:bid, :zip => 90009) 
         @the_old_bid = Factory(:bid, :zip => '01001', :expires_at => 1.day.ago)
       end
-      def make_request(params={})
-        get :index, { :postal_code => '01001' }.merge(params)
+      def make_request(search_params={})
+        get :index, { :search => {:postal_code => '01001' }.merge(search_params) }
       end
       it "should display the page" do
         make_request
@@ -160,12 +160,12 @@ describe BidsController do
 
       it "should record the search url in the session" do
         make_request
-        session[:last_search].should == "http://test.host/bids?postal_code=01001"
+        session[:last_search].should == "http://test.host/bids?search[postal_code]=01001"
       end
 
       context "when searching by geolocation" do
         it "should find nearby bids" do
-          make_request :postal_code => nil, :latitude => '42.0898', :longitude=> '-72.6157'
+          make_request :postal_code => nil, :latitude => '42.0898', :longitude => '-72.6157'
           assigns[:bids].should include(@the_bid)
           assigns[:bids].should_not include(@the_other_bid)
         end
@@ -174,27 +174,31 @@ describe BidsController do
 
     context "when no results are found" do
       it "should render the bidding page" do
-        get :index, :postal_code => 'f1o 1b1'
+        get :index, :search => { :postal_code => 'f1o 1b1' }
         response.should be_redirect
         flash[:notice].should match(/no pairs/i)
       end
       it "should put the search value in the params" do
-        get :index, :postal_code => '50005'
-        response.should redirect_to(new_bid_path(:postal_code => '50005'))
+        get :index, :search => {:postal_code => '50005'}
+        response.should redirect_to(new_bid_path(:bid => {:postal_code => '50005'}))
+      end
+      it "should put the geo search value in the params" do
+        get :index, :search => {:postal_code => '', :latitude => '42', :longitude => '-110'}
+        response.should redirect_to(new_bid_path(:bid => {:latitude => 42, :longitude => -110 }))
       end
     end
 
     context "when the zip code isn't valid" do
       it "should redirect back to the new searches page" do
-        get :index, :postal_code => ""
+        get :index, :search => {:postal_code => ""}
         response.should redirect_to(new_search_path)
       end
       it "should also redirect back to the new searches page" do
-        get :index, :postal_code => "zzb"
+        get :index, :search => {:postal_code => "zzb"}
         response.should redirect_to(new_search_path)
       end
       it "should put a message in the flash" do
-        get :index, :postal_code => "zzb"
+        get :index, :search => {:postal_code => "zzb"}
         flash[:notice].should match('US and Canadian postal codes')
       end
     end

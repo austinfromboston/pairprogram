@@ -8,7 +8,7 @@
 
     .form-field
       when anyone in
-      - if bid_form.object.zip? || bid_form.object.latitude.nil?
+      - if bid_form.object.zip.present? || bid_form.object.latitude.nil?
         = bid_form.label :zip
         = bid_form.text_field :zip, :size => 6
       - else

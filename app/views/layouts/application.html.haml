@@ -8,7 +8,7 @@
       = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
     = stylesheet_link_tag :all
     = csrf_meta_tag
-  %body
+  %body{:class => "#{controller.action_name}_#{controller.controller_name} #{controller.controller_name}"}
     #container-main
       #container-columns
         #left-bar.column
@@ -57,5 +57,5 @@
 
           = yield
     %footer
-      = javascript_include_tag 'jquery', 'geolocate', 'behaviors'
+      = javascript_include_tag 'jquery', 'behaviors', 'page', 'pages/new_searches'
 

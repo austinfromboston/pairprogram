@@ -2,17 +2,19 @@
   %h1 Looking for a Pair?
   = form_tag bids_path, :method => :get do 
     #manual-search.search-block
-      = label_tag :postal_code, 'Enter Your Zip Code'
+      = label_tag :search_postal_code, 'Enter Your Zip Code'
       .fields-block
-        = text_field_tag :postal_code, nil, :size => 6, :placeholder => '00000', :autofocus => true
-        = link_to "use my current location", "#", :class => 'show-geolocated-search hidden'
+        = text_field_tag :'search[postal_code]', nil, :size => 6, :placeholder => '00000', :autofocus => true
+        .change-search
+          = link_to "use my current location", "#", :class => 'show-geolocated-search hidden'
     #geolocated-search.search-block.hidden
       Find Pairs near
       %span.geo-description
-      = link_to "I'd like to choose another location", "#", :class => 'show-manual-search'
+      .change-search
+        = link_to "choose another location", "#", :class => 'show-manual-search'
       .hidden
-        = text_field_tag :latitude
-        = text_field_tag :longitude
+        = text_field_tag :'search[latitude]'
+        = text_field_tag :'search[longitude]'
     = submit_tag "Find a Pair"
   = link_to "wait, what?", resources_path(:anchor => 'whatsup')
-  
+

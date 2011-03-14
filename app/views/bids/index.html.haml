@@ -6,10 +6,10 @@
 %p
   I'm interested,
   - if current_user
-    = link_to "add me to this list", new_bid_path(:postal_code=> params[:postal_code]), :class => 'confirm'
-    = form_for Bid.new(:zip => params[:postal_code]), :html => { :class => 'hidden confirm' } do |bid_form|
+    = link_to "add me to this list", new_bid_path(:postal_code=> search_params[:postal_code]), :class => 'confirm'
+    = form_for Bid.new(:zip => search_params[:postal_code]), :html => { :class => 'hidden confirm' } do |bid_form|
       %p You are about to create a new posting to pair in
       = bid_form.text_field :zip
       = bid_form.submit "Create Posting"
   - else
-    = link_to "add me to this list", new_bid_path(:postal_code=> params[:postal_code])
+    = link_to "add me to this list", new_bid_path(:bid => search_params)
